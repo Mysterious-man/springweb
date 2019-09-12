@@ -135,7 +135,7 @@ public class ProductServiceImpl implements  IProductService{
             Integer product_id=productUpdateDTO.getProduct().getProductId();
             this.getProductById(product_id).getProductId();
         } catch (Exception e) {
-            throw new ApiException("300","rush2");
+            throw new ApiException("300","rush233");
         }
 
         BeanUtils.copyProperties(productUpdateDTO.getProduct(),product);
