@@ -5,6 +5,7 @@ import com.acghome.dto.ProductAddDTO;
 import com.acghome.entity.db1.*;
 import com.acghome.dto.ProductUpdateDTO;
 import com.acghome.entity.ErpMockSku;
+import com.acghome.utils.ApiException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -129,9 +130,16 @@ public class ProductServiceImpl implements  IProductService{
         Product_attribute product_attribute=new Product_attribute();
 
         //更新产品信息主表
+
+        try {
+            Integer product_id=productUpdateDTO.getProduct().getProductId();
+            this.getProductById(product_id).getProductId();
+        } catch (Exception e) {
+            throw new ApiException("300","rush233");
+        }
+
         BeanUtils.copyProperties(productUpdateDTO.getProduct(),product);
         this.update(product);
-
 
         //更新产品属性表
         product_attribute.setProductId(product.getProductId());

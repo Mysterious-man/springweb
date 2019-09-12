@@ -1,7 +1,13 @@
 package com.acghome.utils;
 
-public class ApiException  extends RuntimeException{
-
+/**
+ * @author tmh
+ * @version 1.0.0
+ * @ClassName RequestException.java
+ * @Description TODO
+ * @createTime 2019年09月12日 15:20:00
+ */
+public class RequestException {
 
     private String code;
     private String msg;
@@ -16,22 +22,23 @@ public class ApiException  extends RuntimeException{
     }
 
 
-    public ApiException() {
+    public RequestException() {
 
         this.code = "500";
-        this.msg = "接口异常";
+        this.msg = "参数异常";
+
     }
 
-    public ApiException(String msg) {
+    public RequestException(String msg) {
 
         this.code = "500";
         this.msg = msg;
+
     }
 
-    public ApiException(String code, String msg) {
+    public RequestException(String code, String msg) {
         this.code = code;
         this.msg = msg;
-
     }
 
     public String getCode() {
