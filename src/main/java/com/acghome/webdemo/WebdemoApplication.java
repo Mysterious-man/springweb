@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 
-@MapperScan("com.tmh.mapper")//将项目中对应的mapper类的路径加进来就可以了
+@MapperScan("com.acghome.mapper")//将项目中对应的mapper类的路径加进来就可以了
 @ComponentScan(basePackages = {"com.acghome.controller","com.acghome.service", "com.acghome.utils.aspect","com.acghome.conf"})
 @SpringBootApplication
 public class WebdemoApplication {
