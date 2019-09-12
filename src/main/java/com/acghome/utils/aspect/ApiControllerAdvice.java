@@ -39,10 +39,11 @@ public class ApiControllerAdvice {
      */
     @ResponseBody
     @ExceptionHandler(value = ApiException.class)
-    public Map myErrorHandler(ApiException ex) {
-        Map map = new HashMap();
+    public Map ApiErrorHandler(ApiException ex) {
+        Map<String,Object> map = new HashMap<>();
         map.put("code", ex.getCode());
         map.put("msg", ex.getMsg());
+        map.put("success",ex.getSuccess());
         return map;
     }
 
