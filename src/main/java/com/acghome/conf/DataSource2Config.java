@@ -18,7 +18,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = "com.tmh.mapper.db2", sqlSessionTemplateRef = "db2SqlSessionTemplate")
+@MapperScan(basePackages = "com.acghome.mapper.db2", sqlSessionTemplateRef = "db2SqlSessionTemplate")
 public class DataSource2Config {
 
     @Bean(name = "db2DataSource")

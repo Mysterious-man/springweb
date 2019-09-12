@@ -3,7 +3,6 @@ server:
 
 spring:
   datasource:
-
     #链接池
     hikari: # https://github.com/brettwooldridge/HikariCP (uses milliseconds for all time values)
       maximumPoolSize: 10 #连接池中允许的最大连接数。缺省值：10
@@ -24,6 +23,12 @@ spring:
       driver-class-name: com.mysql.jdbc.Driver
       username: root
       password: 123456
+  mvc:
+    view:
+      prefix : /WEB-INF/jsp/
+      suffix : .jsp
+
+
 
 
 mybatis:
