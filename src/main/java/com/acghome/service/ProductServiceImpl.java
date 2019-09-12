@@ -129,16 +129,18 @@ public class ProductServiceImpl implements  IProductService{
         Product product=new Product();
         Product_attribute product_attribute=new Product_attribute();
 
-        //更新产品信息主表
 
+        ProductUpdateDTO.ProductBean productDTO = productUpdateDTO.getProduct();
+
+        //更新产品信息主表
         try {
-            Integer product_id=productUpdateDTO.getProduct().getProductId();
+            Integer product_id=productDTO.getProductId();
             this.getProductById(product_id).getProductId();
         } catch (Exception e) {
-            throw new ApiException("300","rush233");
+            throw new ApiException("产品id不存在");
         }
 
-        BeanUtils.copyProperties(productUpdateDTO.getProduct(),product);
+        BeanUtils.copyProperties(productDTO,product);
         this.update(product);
 
         //更新产品属性表
@@ -152,8 +154,9 @@ public class ProductServiceImpl implements  IProductService{
 
 
         //更新产品图片
-        if (!productUpdateDTO.getProduct_pic_infos().isEmpty()) {
-            for( ProductUpdateDTO.ProductPicInfoBean productPicInfoBean : productUpdateDTO.getProduct_pic_infos()){
+        List<ProductUpdateDTO.ProductPicInfoBean> product_pic_infos = productUpdateDTO.getProduct_pic_infos();
+        if (!product_pic_infos.isEmpty()) {
+            for( ProductUpdateDTO.ProductPicInfoBean productPicInfoBean : product_pic_infos){
 
                 Product_pic_info product_pic_info=new Product_pic_info();
 
