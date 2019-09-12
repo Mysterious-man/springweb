@@ -66,6 +66,16 @@ public class ProductController {
         return ResultGenerator.genSuccessResult(result_data);
 
     }
+//    @RequestMapping(value = "/get",method = RequestMethod.POST )
+//    public Result updateProductAndSku() {
+//
+//        ApiValidator.validate_field(bindingResult);
+//
+//        Object result_data=productService.updateProductAndSku(productUpdateDTO);
+//
+//        return ResultGenerator.genSuccessResult(result_data);
+//
+//    }
 
 }
 

@@ -42,7 +42,7 @@ public class UserController {
     public Result addUser(@RequestBody User user) {
 
         logger.info(user.toString());
-        IUserService.addUser(user);
+//        IUserService.addUser(user);
 
         return ResultGenerator.genFailResult("test");
     }
@@ -67,14 +67,14 @@ public class UserController {
 //}
 
 
-    @ResponseBody
+  /*  @ResponseBody
     @RequestMapping(value = "{id}")
     public Object getUser(@PathVariable int id) {
 
-        User user=IUserService.getUserById(id);
+//        User user=IUserService.getUserById(id);
         return ResultGenerator.genSuccessResult(user);
     }
-
+*/
 
     @ResponseBody
     @RequestMapping(value = "/upload")

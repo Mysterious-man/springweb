@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 
-@Transactional
+
 @Service(value = "productService")
 public class ProductServiceImpl implements  IProductService{
 

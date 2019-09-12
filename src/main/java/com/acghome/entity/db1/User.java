@@ -4,12 +4,9 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private Integer id;
+    private String passWord;
 
-    private String name;
-
-    private Integer age;
-
-    private Double money;
+    private String userName;
 
     private static final long serialVersionUID = 1L;
 
@@ -21,27 +18,19 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getPassWord() {
+        return passWord;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
-    public Integer getAge() {
-        return age;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Double getMoney() {
-        return money;
-    }
-
-    public void setMoney(Double money) {
-        this.money = money;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

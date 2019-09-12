@@ -7,7 +7,8 @@
     <!--导入属性配置-->
     <properties resource="conf.properties"></properties>
     <!-- 指定特定数据库的jdbc驱动jar包的位置-->
-    <classPathEntry  location="/Users/tmh/.m2/repository/mysql/mysql-connector-java/5.1.38/mysql-connector-java-5.1.38.jar"/>
+    <!--<classPathEntry  location="/Users/tmh/.m2/repository/mysql/mysql-connector-java/5.1.38/mysql-connector-java-5.1.38.jar"/>-->
+    <classPathEntry  location="D:\MySource\jar\mysql-connector-java-5.1.38.jar"/>
     <context id="MysqlTables"  targetRuntime="MyBatis3">
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
         <!--<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>-->
@@ -45,21 +46,21 @@
         <!--<table tableName="user" domainObjectName="User"  enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"  >-->
             <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
         <!--</table>-->
-        <!--<table tableName="product" domainObjectName="Product"  enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"  >-->
-            <!--<generatedKey column="product_id" sqlStatement="JDBC"/>-->
-        <!--</table>-->
-        <!--<table tableName="product_attribute" domainObjectName="Product_attribute"  enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"  >-->
-            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
-        <!--</table>-->
-        <!--<table tableName="product_pic_info" domainObjectName="Product_pic_info"  enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"  >-->
-            <!--<generatedKey column="product_pic_id" sqlStatement="JDBC"/>-->
-        <!--</table>-->
-        <!--<table tableName="product_sku" domainObjectName="Product_sku"  enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"  >-->
-            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
-        <!--</table>-->
-        <!--<table tableName="sku_attribute" domainObjectName="Sku_attribute"  enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"  >-->
-            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
-        <!--</table>-->
+        <!--<table tableName="product" domainObjectName="Product"  enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"  >
+            <generatedKey column="product_id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="product_attribute" domainObjectName="Product_attribute"  enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"  >
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="product_pic_info" domainObjectName="Product_pic_info"  enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"  >
+            <generatedKey column="product_pic_id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="product_sku" domainObjectName="Product_sku"  enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"  >
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="sku_attribute" domainObjectName="Sku_attribute"  enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"  >
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>-->
 
     </context>
 </generatorConfiguration>
