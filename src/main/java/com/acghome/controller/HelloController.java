@@ -25,7 +25,7 @@ public class HelloController {
 
 
     }
-    private void nb(){}
+    private void nb(){  }
 
 
 }
