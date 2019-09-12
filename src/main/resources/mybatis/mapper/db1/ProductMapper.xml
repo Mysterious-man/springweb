@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.acghome.mapper.db1.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.acghome.entity.db1.Product" >
+    <id column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_core" property="productCore" jdbcType="CHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="bar_code" property="barCode" jdbcType="VARCHAR" />
+    <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+    <result column="one_category_id" property="oneCategoryId" jdbcType="INTEGER" />
+    <result column="two_category_id" property="twoCategoryId" jdbcType="INTEGER" />
+    <result column="three_category_id" property="threeCategoryId" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="original_price" property="originalPrice" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="production_date" property="productionDate" jdbcType="TIMESTAMP" />
+    <result column="shelf_life" property="shelfLife" jdbcType="INTEGER" />
+    <result column="indate" property="indate" jdbcType="TIMESTAMP" />
+    <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.acghome.entity.db1.Product" extends="BaseResultMap" >
+    <result column="descript" property="descript" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    product_id, product_core, product_name, bar_code, brand_name, one_category_id, two_category_id, 
+    three_category_id, price, original_price, status, production_date, shelf_life, indate, 
+    modified_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    descript
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.acghome.entity.db1.ProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.acghome.entity.db1.ProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from product
+    where product_id = #{productId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product
+    where product_id = #{productId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.acghome.entity.db1.ProductExample" >
+    delete from product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.acghome.entity.db1.Product" useGeneratedKeys="true" keyProperty="productId" >
+    insert into product (product_core, product_name, bar_code, 
+      brand_name, one_category_id, two_category_id, 
+      three_category_id, price, original_price, 
+      status, production_date, shelf_life, 
+      indate, modified_time, descript
+      )
+    values (#{productCore,jdbcType=CHAR}, #{productName,jdbcType=VARCHAR}, #{barCode,jdbcType=VARCHAR}, 
+      #{brandName,jdbcType=VARCHAR}, #{oneCategoryId,jdbcType=INTEGER}, #{twoCategoryId,jdbcType=INTEGER}, 
+      #{threeCategoryId,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{originalPrice,jdbcType=DECIMAL}, 
+      #{status,jdbcType=INTEGER}, #{productionDate,jdbcType=TIMESTAMP}, #{shelfLife,jdbcType=INTEGER}, 
+      #{indate,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, #{descript,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.acghome.entity.db1.Product" useGeneratedKeys="true" keyProperty="productId" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productCore != null" >
+        product_core,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="barCode != null" >
+        bar_code,
+      </if>
+      <if test="brandName != null" >
+        brand_name,
+      </if>
+      <if test="oneCategoryId != null" >
+        one_category_id,
+      </if>
+      <if test="twoCategoryId != null" >
+        two_category_id,
+      </if>
+      <if test="threeCategoryId != null" >
+        three_category_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="originalPrice != null" >
+        original_price,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="productionDate != null" >
+        production_date,
+      </if>
+      <if test="shelfLife != null" >
+        shelf_life,
+      </if>
+      <if test="indate != null" >
+        indate,
+      </if>
+      <if test="modifiedTime != null" >
+        modified_time,
+      </if>
+      <if test="descript != null" >
+        descript,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productCore != null" >
+        #{productCore,jdbcType=CHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null" >
+        #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="brandName != null" >
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="oneCategoryId != null" >
+        #{oneCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="twoCategoryId != null" >
+        #{twoCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="threeCategoryId != null" >
+        #{threeCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="originalPrice != null" >
+        #{originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="productionDate != null" >
+        #{productionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shelfLife != null" >
+        #{shelfLife,jdbcType=INTEGER},
+      </if>
+      <if test="indate != null" >
+        #{indate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="descript != null" >
+        #{descript,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.acghome.entity.db1.ProductExample" resultType="java.lang.Integer" >
+    select count(*) from product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update product
+    <set >
+      <if test="record.productId != null" >
+        product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productCore != null" >
+        product_core = #{record.productCore,jdbcType=CHAR},
+      </if>
+      <if test="record.productName != null" >
+        product_name = #{record.productName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.barCode != null" >
+        bar_code = #{record.barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandName != null" >
+        brand_name = #{record.brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oneCategoryId != null" >
+        one_category_id = #{record.oneCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.twoCategoryId != null" >
+        two_category_id = #{record.twoCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.threeCategoryId != null" >
+        three_category_id = #{record.threeCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.originalPrice != null" >
+        original_price = #{record.originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.productionDate != null" >
+        production_date = #{record.productionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shelfLife != null" >
+        shelf_life = #{record.shelfLife,jdbcType=INTEGER},
+      </if>
+      <if test="record.indate != null" >
+        indate = #{record.indate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifiedTime != null" >
+        modified_time = #{record.modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.descript != null" >
+        descript = #{record.descript,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update product
+    set product_id = #{record.productId,jdbcType=INTEGER},
+      product_core = #{record.productCore,jdbcType=CHAR},
+      product_name = #{record.productName,jdbcType=VARCHAR},
+      bar_code = #{record.barCode,jdbcType=VARCHAR},
+      brand_name = #{record.brandName,jdbcType=VARCHAR},
+      one_category_id = #{record.oneCategoryId,jdbcType=INTEGER},
+      two_category_id = #{record.twoCategoryId,jdbcType=INTEGER},
+      three_category_id = #{record.threeCategoryId,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=DECIMAL},
+      original_price = #{record.originalPrice,jdbcType=DECIMAL},
+      status = #{record.status,jdbcType=INTEGER},
+      production_date = #{record.productionDate,jdbcType=TIMESTAMP},
+      shelf_life = #{record.shelfLife,jdbcType=INTEGER},
+      indate = #{record.indate,jdbcType=TIMESTAMP},
+      modified_time = #{record.modifiedTime,jdbcType=TIMESTAMP},
+      descript = #{record.descript,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update product
+    set product_id = #{record.productId,jdbcType=INTEGER},
+      product_core = #{record.productCore,jdbcType=CHAR},
+      product_name = #{record.productName,jdbcType=VARCHAR},
+      bar_code = #{record.barCode,jdbcType=VARCHAR},
+      brand_name = #{record.brandName,jdbcType=VARCHAR},
+      one_category_id = #{record.oneCategoryId,jdbcType=INTEGER},
+      two_category_id = #{record.twoCategoryId,jdbcType=INTEGER},
+      three_category_id = #{record.threeCategoryId,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=DECIMAL},
+      original_price = #{record.originalPrice,jdbcType=DECIMAL},
+      status = #{record.status,jdbcType=INTEGER},
+      production_date = #{record.productionDate,jdbcType=TIMESTAMP},
+      shelf_life = #{record.shelfLife,jdbcType=INTEGER},
+      indate = #{record.indate,jdbcType=TIMESTAMP},
+      modified_time = #{record.modifiedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.acghome.entity.db1.Product" >
+    update product
+    <set >
+      <if test="productCore != null" >
+        product_core = #{productCore,jdbcType=CHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null" >
+        bar_code = #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="brandName != null" >
+        brand_name = #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="oneCategoryId != null" >
+        one_category_id = #{oneCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="twoCategoryId != null" >
+        two_category_id = #{twoCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="threeCategoryId != null" >
+        three_category_id = #{threeCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="originalPrice != null" >
+        original_price = #{originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="productionDate != null" >
+        production_date = #{productionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shelfLife != null" >
+        shelf_life = #{shelfLife,jdbcType=INTEGER},
+      </if>
+      <if test="indate != null" >
+        indate = #{indate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="descript != null" >
+        descript = #{descript,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where product_id = #{productId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.acghome.entity.db1.Product" >
+    update product
+    set product_core = #{productCore,jdbcType=CHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      bar_code = #{barCode,jdbcType=VARCHAR},
+      brand_name = #{brandName,jdbcType=VARCHAR},
+      one_category_id = #{oneCategoryId,jdbcType=INTEGER},
+      two_category_id = #{twoCategoryId,jdbcType=INTEGER},
+      three_category_id = #{threeCategoryId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      original_price = #{originalPrice,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      production_date = #{productionDate,jdbcType=TIMESTAMP},
+      shelf_life = #{shelfLife,jdbcType=INTEGER},
+      indate = #{indate,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      descript = #{descript,jdbcType=LONGVARCHAR}
+    where product_id = #{productId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.acghome.entity.db1.Product" >
+    update product
+    set product_core = #{productCore,jdbcType=CHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      bar_code = #{barCode,jdbcType=VARCHAR},
+      brand_name = #{brandName,jdbcType=VARCHAR},
+      one_category_id = #{oneCategoryId,jdbcType=INTEGER},
+      two_category_id = #{twoCategoryId,jdbcType=INTEGER},
+      three_category_id = #{threeCategoryId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      original_price = #{originalPrice,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      production_date = #{productionDate,jdbcType=TIMESTAMP},
+      shelf_life = #{shelfLife,jdbcType=INTEGER},
+      indate = #{indate,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP}
+    where product_id = #{productId,jdbcType=INTEGER}
+  </update>
+</mapper>
