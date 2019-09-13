@@ -1,7 +1,7 @@
 package com.acghome.service;
 
-import com.acghome.dto.ProductAddDTO;
-import com.acghome.dto.ProductUpdateDTO;
+import com.acghome.pojo.dto.ProductAddDTO;
+import com.acghome.pojo.dto.ProductUpdateDTO;
 import com.acghome.entity.db1.Product;
 
 import java.util.Map;
@@ -23,6 +23,10 @@ public interface IProductService {
         "sku_id": [144,145]
     }
      **/
+
+    public Map<String,Object> getProductAndSku(int product_id);
+
+
     public Map<String, Object> addProductAndSku(ProductAddDTO productAddbean);
 
 

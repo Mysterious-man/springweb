@@ -1,10 +1,9 @@
-package com.acghome.dto;
+package com.acghome.pojo.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -13,7 +12,7 @@ import java.util.List;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ProductAddDTO implements Serializable {
+public class GetProductEditDTO implements Serializable {
 
     @Override
     public String toString() {
@@ -28,13 +27,10 @@ public class ProductAddDTO implements Serializable {
     private ProductBean product;
     @NotNull
     private ProductAttributeBean product_attribute;
-
     @NotNull
-    @NotEmpty
     private List<ProductPicInfoBean> product_pic_infos;
 
     @NotNull
-    @NotEmpty
     private List<SkuBean> skus;
 
     public ProductBean getProduct() {
@@ -72,6 +68,10 @@ public class ProductAddDTO implements Serializable {
     public static class SkuBean {
 
 
+        @NotNull
+        @NotBlank
+        private Integer id;
+
         private String skuCode;
 
         private BigDecimal price;
@@ -91,6 +91,14 @@ public class ProductAddDTO implements Serializable {
 
         @NotNull
         private SkuAttribute sku_attribute;
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
 
         public SkuAttribute getSku_attribute() {
             return sku_attribute;
@@ -273,6 +281,8 @@ public class ProductAddDTO implements Serializable {
          * descript : ok de
          * indate : 2019-09-10 15:46:30
          */
+
+        @NotNull
         private Integer productId;
 
         private String productCore;

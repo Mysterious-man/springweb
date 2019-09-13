@@ -1,15 +1,15 @@
-package com.acghome.service;
+package com.acghome.service.impl;
 
 import com.acghome.mapper.db1.*;
-import com.acghome.dto.ProductAddDTO;
+import com.acghome.pojo.dto.ProductAddDTO;
 import com.acghome.entity.db1.*;
-import com.acghome.dto.ProductUpdateDTO;
+import com.acghome.pojo.dto.ProductUpdateDTO;
 import com.acghome.entity.ErpMockSku;
-import com.acghome.utils.ApiException;
+import com.acghome.service.IProductService;
+import com.acghome.utils.exception.RequestException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +19,7 @@ import java.util.Map;
 
 
 @Service(value = "productService")
-public class ProductServiceImpl implements  IProductService{
+public class ProductServiceImpl implements IProductService {
 
 
     @Autowired
@@ -137,7 +137,7 @@ public class ProductServiceImpl implements  IProductService{
             Integer product_id=productDTO.getProductId();
             this.getProductById(product_id).getProductId();
         } catch (Exception e) {
-            throw new ApiException("产品id不存在");
+            throw new RequestException("产品id不存在");
         }
 
         BeanUtils.copyProperties(productDTO,product);
@@ -193,8 +193,6 @@ public class ProductServiceImpl implements  IProductService{
                     Product_pic_info pic_info=new Product_pic_info();
 
                     BeanUtils.copyProperties(skuBean.getSku_pic_info(),pic_info);
-//                    pic_info.setProductId(product.getProductId());
-//                    pic_info.setSkuId(sku.getId());
 
                     Product_pic_infoExample pic_infoExample2 = new Product_pic_infoExample();
                     pic_infoExample2.or().andSkuIdEqualTo(sku.getId());
@@ -212,6 +210,11 @@ public class ProductServiceImpl implements  IProductService{
         return result_data;
     }
 
+
+    @Override
+    public Map<String, Object> getProductAndSku(int product_id) {
+        return null;
+    }
 
     @Override
     public int update(Product product) {

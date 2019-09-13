@@ -1,15 +1,16 @@
-package com.acghome.service;
+package com.acghome.service.impl;
 
 import com.acghome.entity.db1.Product_pic_info;
 import com.acghome.entity.db1.Product_pic_infoExample;
 import com.acghome.mapper.db1.Product_pic_infoMapper;
+import com.acghome.service.IProduct_pic_infoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service(value = "product_pic_infoService")
-public class Product_pic_infoServiceImpl implements IProduct_pic_infoService{
+public class Product_pic_infoServiceImpl implements IProduct_pic_infoService {
 
     @Autowired
     private Product_pic_infoMapper product_pic_infoMapper;

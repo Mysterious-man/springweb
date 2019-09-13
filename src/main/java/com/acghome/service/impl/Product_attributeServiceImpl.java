@@ -1,13 +1,14 @@
-package com.acghome.service;
+package com.acghome.service.impl;
 
 import com.acghome.entity.db1.Product_attribute;
 import com.acghome.mapper.db1.Product_attributeMapper;
+import com.acghome.service.IProduct_attributeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service(value = "product_attributeService")
-public class Product_attributeServiceImpl implements IProduct_attributeService{
+public class Product_attributeServiceImpl implements IProduct_attributeService {
 
 
     @Autowired

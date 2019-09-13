@@ -1,6 +1,6 @@
 package com.acghome.utils.aspect;
 
-import com.acghome.utils.ApiException;
+import com.acghome.utils.exception.ApiException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

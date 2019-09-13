@@ -1,8 +1,9 @@
-package com.acghome.service;
+package com.acghome.service.impl;
 
 import com.acghome.entity.db1.Sku_attribute;
 import com.acghome.entity.db1.Sku_attributeExample;
 import com.acghome.mapper.db1.Sku_attributeMapper;
+import com.acghome.service.ISku_attributeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import java.util.List;
 
 
 @Service(value = "sku_attributeService")
-public class Sku_attributeServicelmpl implements ISku_attributeService{
+public class Sku_attributeServicelmpl implements ISku_attributeService {
 
     @Autowired
     private Sku_attributeMapper sku_attributeMapper;

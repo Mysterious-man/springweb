@@ -2,10 +2,10 @@ package com.acghome.controller;
 
 
 
-import com.acghome.dto.ProductAddDTO;
+import com.acghome.pojo.dto.ProductAddDTO;
 import com.acghome.service.*;
 import com.acghome.utils.ApiValidator;
-import com.acghome.dto.ProductUpdateDTO;
+import com.acghome.pojo.dto.ProductUpdateDTO;
 import com.acghome.utils.Result;
 import com.acghome.utils.ResultGenerator;
 import org.slf4j.Logger;
@@ -76,6 +76,8 @@ public class ProductController {
 //        return ResultGenerator.genSuccessResult(result_data);
 //
 //    }
+
+
 
 }
 
