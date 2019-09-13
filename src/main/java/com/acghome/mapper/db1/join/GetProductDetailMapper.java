@@ -1,4 +1,4 @@
-package com.acghome.mapper.join;
+package com.acghome.mapper.db1.join;
 
 import com.acghome.pojo.DO.ProductDetail;
 import com.acghome.pojo.DO.SkuDetail;

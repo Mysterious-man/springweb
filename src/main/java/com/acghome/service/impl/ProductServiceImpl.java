@@ -1,6 +1,10 @@
 package com.acghome.service.impl;
 
 import com.acghome.mapper.db1.*;
+import com.acghome.mapper.db1.join.GetProductDetailMapper;
+import com.acghome.pojo.DO.ProductDetail;
+import com.acghome.pojo.DO.SkuDetail;
+import com.acghome.pojo.dto.GetProductEditDTO;
 import com.acghome.pojo.dto.ProductAddDTO;
 import com.acghome.entity.db1.*;
 import com.acghome.pojo.dto.ProductUpdateDTO;
@@ -36,6 +40,9 @@ public class ProductServiceImpl implements IProductService {
 
     @Autowired
     private Sku_attributeMapper sku_attributeMapper;
+
+    @Autowired
+    private GetProductDetailMapper getProductDetailMapper;
 
 
 
@@ -212,8 +219,19 @@ public class ProductServiceImpl implements IProductService {
 
 
     @Override
-    public Map<String, Object> getProductAndSku(int product_id) {
-        return null;
+    public Object getProductAndSku(int product_id) {
+
+        ProductDetail productDetail =  getProductDetailMapper.selectProductDetail(product_id);
+
+        List<SkuDetail> skuDetails = getProductDetailMapper.selectSkusDetail(product_id);
+
+        GetProductEditDTO productEditDTO = new GetProductEditDTO();
+
+        productEditDTO.setProduct(productDetail);
+
+        productEditDTO.setSkus(skuDetails);
+
+        return productEditDTO;
     }
 
     @Override

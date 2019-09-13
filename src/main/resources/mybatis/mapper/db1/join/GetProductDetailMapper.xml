@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.acghome.mapper.db1.join.GetProductDetailMapper">
+
+
+
+  <select id="selectProductDetail" resultMap="ProductDetail" parameterType="int">
+    select
+    p.product_id, p.product_core, p.product_name, p.bar_code, p.brand_name, p.one_category_id,p.two_category_id,
+    p.three_category_id,p.price,p.original_price,p.status,p.production_date,p.shelf_life,p.indate,p.modified_time,
+    pa.id as pa_id, pa.product_id as pa_product_id, pa.value as pa_value,
+    ppi.product_pic_id, ppi.product_id as ppi_product_id, ppi.sku_id as ppi_sku_id,
+    ppi.pic_desc ,ppi.pic_url , ppi.is_master as ppi_is_master,pic_order,pic_status,
+    ppi.modified_time as ppi_modified_time
+    from product as p
+    INNER JOIN product_attribute as pa on p.product_id=pa.product_id
+    left outer JOIN product_pic_info as ppi on p.product_id=ppi.product_id
+    where p.product_id=#{product_id} and ppi.sku_id is NULL ;
+  </select>
+  <resultMap id="ProductDetail" type="com.acghome.pojo.DO.ProductDetail" >
+      <id column="product_id" />
+    <association property="product" javaType="com.acghome.entity.db1.Product">
+      <id column="product_id" property="productId" jdbcType="INTEGER" />
+      <result column="product_core" property="productCore" jdbcType="CHAR" />
+      <result column="product_name" property="productName" jdbcType="VARCHAR" />
+      <result column="bar_code" property="barCode" jdbcType="VARCHAR" />
+      <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+      <result column="one_category_id" property="oneCategoryId" jdbcType="INTEGER" />
+      <result column="two_category_id" property="twoCategoryId" jdbcType="INTEGER" />
+      <result column="three_category_id" property="threeCategoryId" jdbcType="INTEGER" />
+      <result column="price" property="price" jdbcType="DECIMAL" />
+      <result column="original_price" property="originalPrice" jdbcType="DECIMAL" />
+      <result column="status" property="status" jdbcType="INTEGER" />
+      <result column="production_date" property="productionDate" jdbcType="TIMESTAMP" />
+      <result column="shelf_life" property="shelfLife" jdbcType="INTEGER" />
+      <result column="indate" property="indate" jdbcType="TIMESTAMP" />
+      <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP" />
+    </association>
+    <association property="product_attribute" javaType="com.acghome.entity.db1.Product_attribute">
+      <id column="pa_id" property="id" jdbcType="INTEGER" />
+      <result column="pa_product_id" property="productId" jdbcType="INTEGER" />
+      <result column="pa_value" property="value" jdbcType="VARCHAR" />
+   </association>
+    <!-- 一对多的关系 -->
+    <!-- property: 指的是集合属性的值, ofType：指的是集合中元素的类型 -->
+    <collection property="product_pic_infoList" ofType="com.acghome.entity.db1.Product_pic_info">
+      <id column="product_pic_id" property="productPicId" jdbcType="INTEGER" />
+      <result column="ppi_product_id" property="productId" jdbcType="INTEGER" />
+      <result column="ppi_sku_id" property="skuId" jdbcType="INTEGER" />
+      <result column="pic_desc" property="picDesc" jdbcType="VARCHAR" />
+      <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+      <result column="ppi_is_master" property="isMaster" jdbcType="INTEGER" />
+      <result column="pic_order" property="picOrder" jdbcType="INTEGER" />
+      <result column="pic_status" property="picStatus" jdbcType="INTEGER" />
+      <result column="ppi_modified_time" property="modifiedTime" jdbcType="TIMESTAMP" />
+    </collection>
+  </resultMap>
+
+
+
+
+
+
+  <select id="selectSkusDetail" resultMap="SkuDetail" parameterType="int">
+    select
+        sku.id,sku.product_id,sku.sku_code,sku.price,sku.average,sku.stock,sku.low_stock,
+        sku.sp1,sku.sp2,sku.sp3,sku.sale,sku.lock_stock,
+        sku_att.id as sku_att_id,sku_att.sku_id as sku_att_sku_id,sku_att.value as sku_att_value,
+        ppi.product_pic_id,ppi.product_id as ppi_product_id,ppi.sku_id as ppi_sku_id,
+        ppi.pic_desc,ppi.pic_url,ppi.is_master,ppi.pic_order,ppi.pic_status,
+        ppi.modified_time as ppi_modified_time
+    from product_sku as sku
+    LEFT JOIN sku_attribute  as sku_att on sku.id=sku_att.sku_id
+    LEFT JOIN product_pic_info as ppi on sku.id=ppi.sku_id
+    where sku.product_id=#{product_id}
+  </select>
+  <resultMap id="SkuDetail" type="com.acghome.pojo.DO.SkuDetail" >
+      <id column="id" />
+      <association property="product_sku" javaType="com.acghome.entity.db1.Product_sku">
+      <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="product_id" property="productId" jdbcType="INTEGER" />
+        <result column="sku_code" property="skuCode" jdbcType="VARCHAR" />
+        <result column="price" property="price" jdbcType="DECIMAL" />
+        <result column="average" property="average" jdbcType="DECIMAL" />
+        <result column="stock" property="stock" jdbcType="INTEGER" />
+        <result column="low_stock" property="lowStock" jdbcType="INTEGER" />
+        <result column="sp1" property="sp1" jdbcType="VARCHAR" />
+        <result column="sp2" property="sp2" jdbcType="VARCHAR" />
+        <result column="sp3" property="sp3" jdbcType="VARCHAR" />
+        <result column="sale" property="sale" jdbcType="INTEGER" />
+        <result column="lock_stock" property="lockStock" jdbcType="INTEGER" />
+      </association>
+      <association property="sku_attribute" javaType="com.acghome.entity.db1.Sku_attribute">
+          <id column="sku_att_id" property="id" jdbcType="INTEGER" />
+          <result column="sku_att_sku_id" property="skuId" jdbcType="INTEGER" />
+          <result column="sku_att_value" property="value" jdbcType="VARCHAR" />
+      </association>
+      <association property="product_pic_info" javaType="com.acghome.entity.db1.Product_pic_info">
+          <id column="product_pic_id" property="productPicId" jdbcType="INTEGER" />
+          <result column="ppi_product_id" property="productId" jdbcType="INTEGER" />
+          <result column="ppi_sku_id" property="skuId" jdbcType="INTEGER" />
+          <result column="pic_desc" property="picDesc" jdbcType="VARCHAR" />
+          <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+          <result column="is_master" property="isMaster" jdbcType="INTEGER" />
+          <result column="pic_order" property="picOrder" jdbcType="INTEGER" />
+          <result column="pic_status" property="picStatus" jdbcType="INTEGER" />
+          <result column="ppi_modified_time" property="modifiedTime" jdbcType="TIMESTAMP" />
+      </association>
+  </resultMap>
+
+</mapper>
