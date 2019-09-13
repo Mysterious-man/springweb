@@ -15,22 +15,15 @@ public interface IProductService {
 
     int update(Product product);
 
-    /**
-     创建商品信息的接口，
-     返回
-    "data": {
-        "product_id": 58,
-        "sku_id": [144,145]
-    }
-     **/
-
-    public Map<String,Object> getProductAndSku(int product_id);
+    public Object getProductAndSku(int product_id);
 
 
     public Map<String, Object> addProductAndSku(ProductAddDTO productAddbean);
 
 
     public Map<String, Object> updateProductAndSku(ProductUpdateDTO productUpdateDTO);
+
+
 
 
 }

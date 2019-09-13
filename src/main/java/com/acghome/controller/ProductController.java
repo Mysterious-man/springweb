@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 
 @RestController
 @RequestMapping("/product")
@@ -66,16 +68,19 @@ public class ProductController {
         return ResultGenerator.genSuccessResult(result_data);
 
     }
-//    @RequestMapping(value = "/get",method = RequestMethod.POST )
-//    public Result updateProductAndSku() {
-//
-//        ApiValidator.validate_field(bindingResult);
-//
-//        Object result_data=productService.updateProductAndSku(productUpdateDTO);
-//
-//        return ResultGenerator.genSuccessResult(result_data);
-//
-//    }
+    @RequestMapping(value = "/get",method = RequestMethod.POST )
+    public Result GetProductAndSkuEdit(@RequestBody Map<String,Object> request_data) {
+
+        int product_id= (int) request_data.get("product_id");
+
+        Object result_data = productService.getProductAndSku(product_id);
+
+
+        return ResultGenerator.genSuccessResult(result_data);
+
+    }
+
+
 
 
 
