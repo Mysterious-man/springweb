@@ -16,12 +16,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/system")
 public class LoginController extends BaseContorller {
 
-	@RequestMapping("/index")
+	@RequestMapping("/login")
 	public String index() {
-		return "login/index";
+		return "system/login";
 	}
 	
 	@RequestMapping("/loginRequset")
