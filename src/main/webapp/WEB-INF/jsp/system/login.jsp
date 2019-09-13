@@ -27,7 +27,7 @@
 
 <body class="login-layout Reg_log_style">
 <div class="logintop">
-    <span>欢迎后台管理界面平台</span>
+    <span>欢迎来到后台管理界面平台</span>
     <ul>
         <li><a href="#">返回首页</a></li>
         <li><a href="#">帮助</a></li>
@@ -91,7 +91,7 @@
             if($(this).val()=="")
             {
 
-                layer.alert(str+=""+$(this).attr("data-name")+"を入力してください!",{
+                layer.alert(str+=""+$(this).attr("data-name")+"请输入!",{
                     title: '提示框',
                     icon:0,
                 });
