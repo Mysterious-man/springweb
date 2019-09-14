@@ -25,7 +25,7 @@ import java.util.Map;
 @RequestMapping("/product")
 public class ProductController {
 
-    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final static Logger logger = LoggerFactory.getLogger(PictureController.class);
 
 
     @Autowired

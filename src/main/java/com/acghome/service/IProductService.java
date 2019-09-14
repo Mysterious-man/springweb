@@ -15,6 +15,7 @@ public interface IProductService {
 
     int update(Product product);
 
+
     public Object getProductAndSku(int product_id);
 
 

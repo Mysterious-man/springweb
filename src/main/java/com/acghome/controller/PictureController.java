@@ -1,6 +1,7 @@
 package com.acghome.controller;
 
 
+import com.acghome.utils.Constants;
 import com.acghome.utils.Result;
 import com.acghome.utils.ResultGenerator;
 import com.acghome.entity.db1.User;
@@ -16,93 +17,66 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.UUID;
 
 
 @Controller
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/picture")
 
-public class UserController {
+public class PictureController {
 
-    private static String FOLDER = "/Users/tmh/Documents/code project/webdemo/src/main/resources/temp/";
+
 
     @Autowired
     private com.acghome.service.IUserService IUserService;
 
-    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final static Logger logger = LoggerFactory.getLogger(PictureController.class);
 
-    @RequestMapping(value = "/rush")
-    @ResponseBody
-    public String getUserdefault() {
-        logger.info("看看执行没有");
-        return "hello world";
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public Result addUser(@RequestBody User user) {
-
-        logger.info(user.toString());
-//        IUserService.addUser(user);
-
-        return ResultGenerator.genFailResult("test");
-    }
-
-//    @ResponseBody
-//    @RequestMapping(value = "/add2", method = RequestMethod.POST)
-//    public Map addUser2(@RequestBody Map<String, Object> user) {
-//
-//        User usertmp = new User();
-//
-//        Integer money = (Integer) user.get("money");
-//        usertmp.setMoney(Double.valueOf(money.doubleValue()));
-//        usertmp.setName((String) user.get("name"));
-//        usertmp.setAge((Integer) user.get("age"));
-//
-//        logger.info(user.toString());
-//        IUserService.addUser(usertmp);
-//
-//        user.put("new", "haha");
-//
-//        return user;
-//}
-
-
-  /*  @ResponseBody
-    @RequestMapping(value = "{id}")
-    public Object getUser(@PathVariable int id) {
-
-//        User user=IUserService.getUserById(id);
-        return ResultGenerator.genSuccessResult(user);
-    }
-*/
 
 
     @ResponseBody
     @RequestMapping(value = "/upload")
-    public String singleFileUpload(@RequestParam("file") MultipartFile fileinput) {
+    public Result saveUpload(@RequestParam("file") MultipartFile fileinput) {
 
         if (fileinput.isEmpty()) {
 
-            return "error Please select a file to upload";
+            return ResultGenerator.genFailResult("上传图片为null");
         }
 
+        // 原始文件名
+        String originalFileName = fileinput.getOriginalFilename();
+        // 获取图片后缀
+        String suffix = originalFileName.substring(originalFileName.lastIndexOf("."));
+        // 生成图片存储的名称，UUID 避免相同图片名冲突，并加上图片后缀
+        String fileName = UUID.randomUUID().toString() + suffix;
+        // 图片存储路径
+        String filePath = Constants.IMG_PATH + fileName;
+
+
         try {
-            Path path = Paths.get(FOLDER + fileinput.getOriginalFilename());
+            Path path = Paths.get(filePath);
 
             Files.write(path, fileinput.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
+            return ResultGenerator.genFailResult("上传图片失败");
         }
 
-        return "ok";
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("url",fileName);
+        map.put("IMG_PATH",filePath);
+        return ResultGenerator.genSuccessResult(map);
 
     }
+
+
 
     @ResponseBody
     @GetMapping("download")
     public String downloadFile(HttpServletResponse response) {
         String fileName = "20190902114314.jpg";
-        String filePath = FOLDER + fileName;
+        String filePath = Constants.IMG_PATH + fileName;
 
         File file = new File(filePath);
 
@@ -151,11 +125,3 @@ public class UserController {
 
 }
 
-        //分页
-//    @ResponseBody
-//    @RequestMapping(value = "/page_id/{page_id}")
-//    public List<User> getUserByPage(@PathVariable int page_id){
-//
-//        return  IUserService.getUserPage(page_id);
-//
-// }
