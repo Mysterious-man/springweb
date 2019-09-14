@@ -76,6 +76,7 @@ public class UserController {
     }
 */
 
+
     @ResponseBody
     @RequestMapping(value = "/upload")
     public String singleFileUpload(@RequestParam("file") MultipartFile fileinput) {

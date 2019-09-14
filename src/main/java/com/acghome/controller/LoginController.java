@@ -63,6 +63,8 @@ public class LoginController extends BaseContorller {
 			}
 		}
 
+		result.setSuccess(true);
+		result.setMessage("登陆成功");
         return result;
 	}
 
