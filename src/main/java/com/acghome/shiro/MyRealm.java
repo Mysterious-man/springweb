@@ -30,7 +30,6 @@ public class MyRealm extends AuthorizingRealm{
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken arg0) throws AuthenticationException {
 		UsernamePasswordToken upt=(UsernamePasswordToken)arg0;
 		String username = upt.getUsername();
-        List<User> all = userService.getAll();
         User user = userService.getUser(username);
 		if(user==null){
 			throw new UnknownAccountException("用户名错误");
