@@ -19,6 +19,7 @@
     <script src="${pageContext.request.contextPath}/resources/system/js/Sellerber.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/jquery.dataTables.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/jquery.dataTables.bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/system/js/jquery.nicescroll.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/layer/layer.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/laydate/laydate.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/hsCheckData.js" type="text/javascript"></script>
