@@ -47,9 +47,13 @@
                             <h4 class="title_name"><img src="${pageContext.request.contextPath}/resources/system/images/login_title.png" /></h4>
                             <fieldset>
                                 <ul>
-                                    <li class="frame_style form_error"><label class="user_icon"></label><input name="" type="text" data-name="用户名" id="username"/><i>用户名</i></li>
-                                    <li class="frame_style form_error"><label class="password_icon"></label><input name="" type="password"   data-name="密码" id="userpwd"/><i>密码</i></li>
+                                    <li class="frame_style form_error"><label class="user_icon"></label><input name="username" type="text" data-name="用户名" id="username"/><i>用户名</i></li>
+                                    <li class="frame_style form_error"><label class="password_icon"></label><input name="password" type="password"   data-name="密码" id="password"/><i>密码</i></li>
+
+<%--
                                     <li class="frame_style form_error"><label class="Codes_icon"></label><input name="" type="text"   data-name="验证码" id="Codes_text"/><i>验证码</i><div class="Codes_region"><img src="${pageContext.request.contextPath}/resources/system/images/yanzhengma.png" width="100%" height="38px"></div></li>
+--%>
+
                                 </ul>
                                 <div class="space"></div>
                                 <div class="clearfix">
@@ -101,12 +105,28 @@
         });
         if(num>0){  return false;}
         else{
-            layer.alert('登陆成功！',{
-                title: '提示框',
-                icon:1,
-            });
-            location.href="shops_index.html";
-            layer.close(index);
+            var username=$("#username").val();
+            var password=$("#password").val();
+            $.ajax({
+                type:"post",
+                url:"/system/loginRequset",
+                dataType:"json",
+                data:{username:username,password:password},
+                success:function(data){
+                if(data.success){
+                    location.href="shops_index";
+                    layer.close(index);
+                }else{
+                    layer.alert(data.message,{
+                        title: '提示框',
+                        icon:1,
+                    });
+
+                }
+            },
+        });
+
+
         }
     });
     $(document).ready(function(){
