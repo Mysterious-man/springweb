@@ -281,16 +281,16 @@
             id:35,
             pid:2,
             icon:'fa fa-angle-double-right',
-            url:'Brand_Manage.html',
-            name:'品牌管理',
+            url:'/product/Brand_Manage',
+            name:'商品管理',
 
         },
         {
-            id:36,
+            id:56,
             pid:2,
             icon:'fa fa-angle-double-right',
-            url:'Products.html',
-            name:'商品分类',
+            url:'/product/Products',
+            name:'分类管理',
 
         },
         {
@@ -350,14 +350,6 @@
             icon:'fa fa-angle-double-right',
             url:'Personal_info.html',
             name:'管理员信息',
-
-        },
-        {
-            id:56,
-            pid:2,
-            icon:'fa fa-angle-double-right',
-            url:'Products.html',
-            name:'分类管理',
 
         },
         {

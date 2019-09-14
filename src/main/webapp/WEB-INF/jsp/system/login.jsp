@@ -114,7 +114,7 @@
                 data:{username:username,password:password},
                 success:function(data){
                 if(data.success){
-                    location.href="shops_index";
+                    location.href="/system/shops_index";
                     layer.close(index);
                 }else{
                     layer.alert(data.message,{

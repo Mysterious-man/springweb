@@ -53,6 +53,19 @@ public class ProductController {
     }
 
 
+    //分类管理页
+    @RequestMapping("/Products")
+    public String products(Model model) {
+        model.addAttribute("user",UserContext.getUser());
+        return "system/Products";
+    }
+
+    //商品管理
+    @RequestMapping("/Brand_Manage")
+    public String Brand_Manage(Model model) {
+        model.addAttribute("user",UserContext.getUser());
+        return "system/Brand_Manage";
+    }
 
 
 
