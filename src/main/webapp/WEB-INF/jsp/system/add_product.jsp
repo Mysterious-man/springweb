@@ -15,6 +15,7 @@
     <link href="${pageContext.request.contextPath}/resources/system/css/Sellerber.css" type="text/css"  rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resources/system/css/bkg_ui.css" type="text/css"  rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resources/system/font/css/font-awesome.min.css"  rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
     <script src="${pageContext.request.contextPath}/resources/system/js/jquery-1.9.1.min.js" type="text/javascript" ></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/Sellerber.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/jquery.dataTables.min.js"></script>
@@ -23,6 +24,7 @@
     <script src="${pageContext.request.contextPath}/resources/system/js/layer/layer.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/laydate/laydate.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/hsCheckData.js" type="text/javascript"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
     <!--[if lt IE 9]>
     <script src="${pageContext.request.contextPath}/resources/system/js/html5shiv.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/respond.min.js"></script>
@@ -91,11 +93,48 @@
                     </div>
                 </div>
             </li>
-            <li class="clearfix"><label class="label_name col-xs-1">设置规格：&nbsp;&nbsp;</label>
+            <li class="clearfix"><label class="label_name col-xs-1">SKU配置：&nbsp;&nbsp;</label>
                 <div class="Add_content col-xs-11">
-                    <input name="" type="text"  class="col-xs-6"/><em class="Prompt">如"颜色,尺寸,型号"中间以英文逗号隔开</em>
+                    <button  type="button" onclick="openDiv1()" id="openList" class="btn bg-deep-blue operation_btn margin-left">展开</button>
                 </div>
             </li>
+            <div  id="div1">
+                <div id="div2" style="width: 70%;margin-left: 10%;">
+                    <div class="panel panel-default">
+                        <div class="panel-body" >
+                            <div class="form-group col-xs-4">
+                                <label>销售属性1</label>
+                                <input type="text" class="form-control"  placeholder="请输入">
+                                <label>销售属性2</label>
+                                <input type="text" class="form-control"  placeholder="请输入">
+                                <label>销售属性3</label>
+                                <input type="text" class="form-control"  placeholder="请输入">
+                            </div>
+                            <div class="form-group col-xs-4">
+                                <label>价格</label>
+                                <input type="text" class="form-control"  placeholder="请输入">
+                                <label>sku编码</label>
+                                <input type="text" class="form-control"  placeholder="请输入">
+                                <label>预警库存</label>
+                                <input type="text" class="form-control"  placeholder="请输入">
+                            </div>
+                            <div class="form-group col-xs-4">
+                                <label>锁定库存</label>
+                                <input type="text" class="form-control"  placeholder="请输入">
+                                <label>属性</label>
+                                <input type="text" class="form-control"  placeholder="请输入">
+                                <label>图片</label>
+                                <input type="file" class="form-control"  placeholder="Jane Doe">
+                                <button style="margin-top: 20px"  type="button" onclick="del_sku(this)"  class="btn bg-deep-blue operation_btn margin-left">删除SKU</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button style="margin-left: 46%;"  type="button" onclick="add_sku()" >十</button>
+
+
+            </div>
+
             <li class="clearfix">
                 <div class="col-xs-4">
                     <label class="label_name col-xs-3">是否上架：&nbsp;&nbsp;</label>
@@ -115,12 +154,12 @@
             <li class="clearfix">
                 <label class="label_name col-xs-1"><i>*</i>产品图片：&nbsp;&nbsp;</label>
                 <div class="Add_content col-xs-11" id="Upload">
-                    <div class="images_Upload clearfix margin-bottom" id="images_Upload">
-                        <span class="Upload_img"><input name="" type="file" /></span>
-                        <a href="javascript:ovid()" class="operating delete_Upload" onclick="delete_Upload(this.id)"><i class="fa fa-remove"></i></a>
-                        <a href="javascript:ovid()" class="operating" title="预览" onclick="preview_img(this.id)"><i class="fa  fa-image"></i></a>
-                    </div>
-                    <button type="button" class="add_Upload bg-deep-blue" id="add_Upload" onclick="add_Upload()"><i class="fa  fa-plus"></i></button>
+                        <div class="images_Upload clearfix margin-bottom" id="images_Upload">
+                            <span class="Upload_img"><input name="file" type="file" /></span>
+                            <a href="javascript:ovid()" class="operating delete_Upload" onclick="delete_Upload(this.id)"><i class="fa fa-remove"></i></a>
+                            <a href="javascript:ovid()" class="operating" title="预览" onclick="preview_img(this.id)"><i class="fa  fa-image"></i></a>
+                        </div>
+                        <button type="button" class="add_Upload bg-deep-blue" id="add_Upload" onclick="add_Upload()"><i class="fa  fa-plus"></i></button>
                 </div>
             </li>
             <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>内容介绍：&nbsp;&nbsp;</label>
@@ -128,9 +167,9 @@
             </li>
         </ul>
         <div class="Button_operation btn_width">
-            <button class="btn button_btn bg-deep-blue" type="button">保存并提交</button>
-            <button class="btn button_btn bg-orange" type="button">保存草稿</button>
-            <button class="btn button_btn bg-gray" type="button">取消添加</button>
+            <button class="btn button_btn bg-deep-blue" type="button" id="submit">保存并提交</button>
+          <%--  <button class="btn button_btn bg-orange" type="button">保存草稿</button>
+            <button class="btn button_btn bg-gray" type="button">取消添加</button>--%>
         </div>
     </div>
 </div>
@@ -141,6 +180,121 @@
 <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/resources/system/js/utf8-jsp/ueditor.all.min.js"> </script>
 <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/resources/system/js/utf8-jsp/lang/zh-cn/zh-cn.js"></script>
 <script>
+    var ProductAddDTO;
+    var product;
+    var product_attribute;
+    var product_pic_info;
+    var product_pic_infos=  new Array();
+    var sku;
+    var skus = new Array();
+    var sku_attribute;
+    var fileFrom;
+    //保存产品
+    function setProduct(){
+        product={
+            productId : null,
+            productCore : 233,
+            productName : "商品1号",
+            barCode : "2005",
+            brandName : "45654456",
+            oneCategoryId : 1,
+            twoCategoryId : null,
+            threeCategoryId : null,
+            BigDecimal : 55,
+            originalPrice : 66,
+            status : 0,
+            productionDate : null,
+            shelfLife : null,
+            indate : null,
+            modifiedTime :null,
+            descript : "dsadasd"
+        };
+        product_attribute = {
+            value : null
+        };
+    }
+
+    //保存图片 status =0 产品图片 status = 1 sku图片
+    function setProductInfo(picDesc,picUrl,status) {
+        product_pic_info = {
+            picDesc : picDesc,
+            picUrl : picUrl,
+            isMaster :1,
+            picOrder : 1,
+            picStatus : 1,
+        };
+        if(status==0){
+            product_pic_infos.push(product_pic_info);
+        }
+    }
+
+    //保存sku
+    function setSku(sku_pic_info,a,b,c,d,e,f,g,h) {
+        sku_attribute = {
+            value: h
+        };
+        sku={
+            skuCode :g,
+            price : d,
+            lowStock : f,
+            sp1 : a,
+            sp2 : b,
+            sp3 : c,
+            lockStock : null,
+            sku_pic_info: sku_pic_info,
+            sku_attribute :sku_attribute,
+        };
+        skus.push(sku);
+
+    }
+    //保存为Dto
+    function setDto(a,b,c,d){
+        ProductAddDTO={
+            product : a,
+            product_attribute : b,
+            product_pic_infos :c,
+            skus : d
+        }
+
+    }
+    //添加sku表单
+    function add_sku() {
+        $("#div2").append("                    <div class=\"panel panel-default\">\n" +
+            "                        <div class=\"panel-body\" >\n" +
+            "                            <div class=\"form-group col-xs-4\">\n" +
+            "                                <label>销售属性1</label>\n" +
+            "                                <input type=\"text\" class=\"form-control\"  placeholder=\"请输入\">\n" +
+            "                                <label>销售属性2</label>\n" +
+            "                                <input type=\"text\" class=\"form-control\"  placeholder=\"请输入\">\n" +
+            "                                <label>销售属性3</label>\n" +
+            "                                <input type=\"text\" class=\"form-control\"  placeholder=\"请输入\">\n" +
+            "                            </div>\n" +
+            "                            <div class=\"form-group col-xs-4\">\n" +
+            "                                <label>价格</label>\n" +
+            "                                <input type=\"text\" class=\"form-control\"  placeholder=\"请输入\">\n" +
+            "                                <label>sku编码</label>\n" +
+            "                                <input type=\"text\" class=\"form-control\"  placeholder=\"请输入\">\n" +
+            "                                <label>预警库存</label>\n" +
+            "                                <input type=\"text\" class=\"form-control\"  placeholder=\"请输入\">\n" +
+            "                            </div>\n" +
+            "                            <div class=\"form-group col-xs-4\">\n" +
+            "                                <label>锁定库存</label>\n" +
+            "                                <input type=\"text\" class=\"form-control\"  placeholder=\"请输入\">\n" +
+            "                                <label>属性</label>\n" +
+            "                                <input type=\"text\" class=\"form-control\"  placeholder=\"请输入\">\n" +
+            "                                <label>图片</label>\n" +
+            "                                <input type=\"file\" class=\"form-control\"  placeholder=\"Jane Doe\">\n" +
+            "                                <button style=\"margin-top: 20px\"  type=\"button\" onclick=\"del_sku(this)\"  class=\"btn bg-deep-blue operation_btn margin-left\">删除SKU</button>\n" +
+            "                            </div>\n" +
+            "                        </div>\n" +
+            "                    </div>\n");
+
+    }
+    //删除sku表单
+    function del_sku(obj) {
+       $(obj).parent().parent().parent().remove();
+        debugger;
+    }
     var cityData=[
         {
             "2":"食品/保健/酒/饮料",
@@ -167,6 +321,81 @@
                 {"308":"牛奶"},
             ]},
     ];
+
+    $(function () {
+        $("#div1").hide();
+        //提交
+        $("#submit").on('click',function () {
+/*
+            $("#Upload input[type$='file']").each(function () {
+                fileFrom = new FormData();
+                fileFrom.append('file', $(this)[0].files[0]);
+                $.ajax({
+                    url: "/picture/upload",
+                    type: "POST",
+                    data: fileFrom,
+                    async: false,
+                    contentType: false,
+                    processData: false,
+                    success:function(data){
+                        if(data.success){
+                            setProductInfo("没有描述",data.data.IMG_PATH,0);
+                        }else{
+                            layer.alert(data.message,{
+                                title: '提示框',
+                                icon:1,
+                            });
+
+                        }
+                    },
+                });
+
+            });
+*/
+            var skuData = new Array();
+            $("#div1 input").each(function () {
+                if($(this).attr("type")=="file"){
+                    fileFrom = new FormData();
+                    if(typeof($(this)[0].files[0])== "undefined"){
+                        setSku(null,skuData[0],skuData[1],skuData[2],skuData[3],skuData[4],skuData[5],skuData[6],skuData[7]);
+                    }else {
+                        fileFrom.append('file',$(this)[0].files[0]) ;
+                        $.ajax({
+                            url: "/picture/upload",
+                            type: "POST",
+                            data: fileFrom,
+                            async: false,
+                            contentType: false,
+                            processData: false,
+                            success:function(data){
+                                if(data.success){
+                                    setProductInfo("没有描述",data.data.IMG_PATH,1);
+                                    setSku(product_pic_info,skuData[0],skuData[1],skuData[2],skuData[3],skuData[4],skuData[5],skuData[6],skuData[7]);
+                                    skuData = new Array();
+                                }else{
+                                    layer.alert(data.message,{
+                                        title: '提示框',
+                                        icon:1,
+                                    });
+
+                                }
+                            },
+                        });
+                    }
+
+                }else {
+                    skuData.push((this).value);
+                }
+
+
+            });
+
+
+        });
+
+
+    });
+
     $('#cityDanXuan').hsCheckData({
         isShowCheckBox: false, //默认为false
         data: cityData
@@ -211,6 +440,17 @@
     });
     function add_category(){
         $(".add_category_style").toggle();
+
+    }
+    function openDiv1() {
+        if($("#openList").html()=="关闭"){
+            $("#div1").hide();
+            $("#openList").html("展开");
+        }else{
+            $("#div1").show();
+            $("#openList").html("关闭");
+        }
+
 
     }
     /******时间设置*******/

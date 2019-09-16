@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.nio.file.Files;
@@ -37,10 +38,9 @@ public class PictureController {
 
     @ResponseBody
     @RequestMapping(value = "/upload")
-    public Result saveUpload(@RequestParam("file") MultipartFile fileinput) {
-
+    public Result saveUpload(@RequestParam("file") MultipartFile fileinput, HttpServletRequest request) {
+        String realPath = request.getSession().getServletContext().getRealPath("").replace("webapp\\","")+"resources\\temp\\";
         if (fileinput.isEmpty()) {
-
             return ResultGenerator.genFailResult("上传图片为null");
         }
 
@@ -51,7 +51,7 @@ public class PictureController {
         // 生成图片存储的名称，UUID 避免相同图片名冲突，并加上图片后缀
         String fileName = UUID.randomUUID().toString() + suffix;
         // 图片存储路径
-        String filePath = Constants.IMG_PATH + fileName;
+        String filePath =realPath + fileName;
 
 
         try {
