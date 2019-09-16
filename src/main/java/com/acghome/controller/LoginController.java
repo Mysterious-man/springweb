@@ -33,7 +33,7 @@ public class LoginController extends BaseContorller {
 	public Result login(String username, String password) {
 		Result result=new Result();
 		Subject currentUser = SecurityUtils.getSubject();
-		// 判断用户是否以认证
+		// 判断用户是否已认证
 		if (!currentUser.isAuthenticated()) {
 			// 身份认证
 			// 封装token

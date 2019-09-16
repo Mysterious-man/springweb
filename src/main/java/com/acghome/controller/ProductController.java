@@ -12,6 +12,7 @@ import com.acghome.utils.UserContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +27,9 @@ import java.util.Map;
 public class ProductController {
 
     private final static Logger logger = LoggerFactory.getLogger(PictureController.class);
+
+    @Autowired
+    private RedisTemplate<Object, Object> redisTemplate;
 
 
     @Autowired
@@ -101,12 +105,25 @@ public class ProductController {
     @RequestMapping(value = "/get",method = RequestMethod.POST )
     public Result GetProductAndSkuEdit(@RequestBody Map<String,Object> request_data) {
 
-        int product_id= (int) request_data.get("product_id");
+        Integer product_id= (int) request_data.get("product_id");
+        String product_key="GetProductAndSkuEdit_product_id_"+product_id.toString();
 
-        Object result_data = productService.getProductAndSku(product_id);
+        Object productAndSkuInfo = redisTemplate.opsForValue().get(product_key);
+
+        if (productAndSkuInfo!=null) {
+
+                return ResultGenerator.genSuccessResult(productAndSkuInfo);
+
+        } else {
+            Object result_data = productService.getProductAndSku(product_id);
+
+            redisTemplate.opsForValue().set(product_key,result_data);
+
+            return ResultGenerator.genSuccessResult(result_data);
+
+        }
 
 
-        return ResultGenerator.genSuccessResult(result_data);
 
     }
 

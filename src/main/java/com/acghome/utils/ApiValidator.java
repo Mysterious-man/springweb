@@ -12,12 +12,8 @@ public class ApiValidator {
 
         if (bindingResult.hasErrors()) {
             for (FieldError fieldError : bindingResult.getFieldErrors()) {
-
                 throw new ApiException("101", "请求参数错误对应字段:" + fieldError.getField() + fieldError.getDefaultMessage());
-
             }
-
         }
     }
-
 }

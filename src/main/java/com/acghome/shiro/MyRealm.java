@@ -17,8 +17,6 @@ public class MyRealm extends AuthorizingRealm{
 	private IUserService userService;
 
 
-	@Autowired
-    private IProductService productService;
 /*
 
 	@Autowired
