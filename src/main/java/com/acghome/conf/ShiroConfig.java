@@ -40,7 +40,6 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/**", "anon");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
-
     }
 
     @Bean

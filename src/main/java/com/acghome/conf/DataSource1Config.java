@@ -45,7 +45,6 @@ public class DataSource1Config {
             throw new RuntimeException(e);
         }
 
-
     }
 
     @Bean(name = "db1TransactionManager")

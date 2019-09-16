@@ -49,7 +49,6 @@
                                 <ul>
                                     <li class="frame_style form_error"><label class="user_icon"></label><input name="username" type="text" data-name="用户名" id="username"/><i>用户名</i></li>
                                     <li class="frame_style form_error"><label class="password_icon"></label><input name="password" type="password"   data-name="密码" id="password"/><i>密码</i></li>
-
 <%--
                                     <li class="frame_style form_error"><label class="Codes_icon"></label><input name="" type="text"   data-name="验证码" id="Codes_text"/><i>验证码</i><div class="Codes_region"><img src="${pageContext.request.contextPath}/resources/system/images/yanzhengma.png" width="100%" height="38px"></div></li>
 --%>
@@ -125,28 +124,26 @@
                 }
             },
         });
-
-
         }
     });
-    $(document).ready(function(){
-        $("input[type='text'],input[type='password']").blur(function(){
-            var $el = $(this);
-            var $parent = $el.parent();
-            $parent.attr('class','frame_style').removeClass(' form_error');
-            if($el.val()==''){
-                $parent.attr('class','frame_style').addClass(' form_error');
-            }
-        });
-        $("input[type='text'],input[type='password']").focus(function(){
-            var $el = $(this);
-            var $parent = $el.parent();
-            $parent.attr('class','frame_style').removeClass(' form_errors');
-            if($el.val()==''){
-                $parent.attr('class','frame_style').addClass(' form_errors');
-            } else{
-                $parent.attr('class','frame_style').removeClass(' form_errors');
-            }
-        });
-    })
+    // $(document).ready(function(){
+    //     $("input[type='text'],input[type='password']").blur(function(){
+    //         var $el = $(this);
+    //         var $parent = $el.parent();
+    //         $parent.attr('class','frame_style').removeClass(' form_error');
+    //         if($el.val()==''){
+    //             $parent.attr('class','frame_style').addClass(' form_error');
+    //         }
+    //     });
+    //     $("input[type='text'],input[type='password']").focus(function(){
+    //         var $el = $(this);
+    //         var $parent = $el.parent();
+    //         $parent.attr('class','frame_style').removeClass(' form_errors');
+    //         if($el.val()==''){
+    //             $parent.attr('class','frame_style').addClass(' form_errors');
+    //         } else{
+    //             $parent.attr('class','frame_style').removeClass(' form_errors');
+    //         }
+    //     });
+    // })
 </script>
