@@ -46,7 +46,7 @@ public class ResourcePath {
 
 
 
-    //获取webapp下的路径
+    //获取webapp的绝对路径
     public static Path getWebResourceUrl(HttpServletRequest request) {
 
         String realPath = null;
@@ -75,7 +75,7 @@ public class ResourcePath {
 
 
 
-    // 获取classes目录路径
+    // 获取classes目录的绝对路径
     public static Path getClassPath() {
         String url = ResourcePath.class.getClassLoader().getResource("").getPath();
         String urlpath = null;

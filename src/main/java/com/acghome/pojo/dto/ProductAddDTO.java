@@ -2,7 +2,10 @@ package com.acghome.pojo.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -24,17 +27,19 @@ public class ProductAddDTO implements Serializable {
                 '}';
     }
     @NotNull
+    @Valid
     private ProductBean product;
     @NotNull
     private ProductAttributeBean product_attribute;
 
     @NotNull
-    @NotEmpty
-    private List<ProductPicInfoBean> product_pic_infos;
+    @Valid
+    public List<ProductPicInfoBean> product_pic_infos;
 
     @NotNull
     @NotEmpty
-    private List<SkuBean> skus;
+    @Valid
+    public List<SkuBean> skus;
 
     public ProductBean getProduct() {
         return product;
@@ -203,6 +208,8 @@ public class ProductAddDTO implements Serializable {
 
         private String picDesc;
 
+        @NotNull
+        @NotBlank
         private String picUrl;
 
         private Integer isMaster;
@@ -276,6 +283,7 @@ public class ProductAddDTO implements Serializable {
 
         private String productCore;
 
+        @NotNull
         private String productName;
 
         private String barCode;
@@ -288,6 +296,7 @@ public class ProductAddDTO implements Serializable {
 
         private Integer threeCategoryId;
 
+        @NotNull
         private BigDecimal price;
 
         private BigDecimal originalPrice;
