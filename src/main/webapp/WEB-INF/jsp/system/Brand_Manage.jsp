@@ -48,22 +48,11 @@
     </div>
     <div class="h_products_list clearfix mb15" id="Sellerber">
         <!--品牌展示-->
-        <div class="Sellerber_left menu" id="menuBar">
-            <div class="show_btn" id="rightArrow"><span></span></div>
-            <div class="side_title"><a title="隐藏" class="close_btn"><span></span></a></div>
-            <div class="menu_style" id="menu_style">
-                <div class="list_content">
-                    <div class="side_list">
-                        <div id="main" style="height:250px;" class="side_list"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!--品牌列表-->
         <div class="list_Exhibition list_show padding15">
             <div class="operation clearfix mb15  same_module">
        <span class="l_f">
-        <a href="Add_Brand.html"  title="添加品牌" class="btn button_btn bg-deep-blue"><i class="fa fa-plus"></i>添加品牌</a>
+        <a href="Add_Brand.html"  title="添加品牌" class="btn button_btn bg-deep-blue"><i class="fa fa-plus"></i>添加商品</a>
         <a href="javascript:ovid()" class="btn  button_btn btn-danger"><i class="fa fa-trash"></i>批量删除</a>
         <a href="javascript:ovid()" class="btn  button_btn btn-info">国内品牌</a>
         <a href="javascript:ovid()" class="btn button_btn btn-Dark-success">国外品牌</a>
