@@ -37,62 +37,29 @@
 <div class="margin inside_pages clearfix">
     <div class="add_style clearfix relative">
         <!--品牌展示 当通过品牌管理添加产品是显示该-->
-        <div class="Brand_title">
-            <div class="Brand_img"><img src="${pageContext.request.contextPath}/resources/system/product_img/logo/458.jpg"><h3>卡姿兰</h3></div>
-        </div>
+
         <ul>
-            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>标题名称：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input name="" type="text"  class="col-xs-6"/></div></li>
-            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>简单描述：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input name="" type="text" class="col-xs-4"/></div></li>
-            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>关&nbsp;键&nbsp;字：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input name="" type="text" class="col-xs-4"/><em class="Prompt"> 请用","分隔关键字</em></div></li>
-            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>选择分类：&nbsp;&nbsp;</label><div class="Add_content col-xs-11">
-                <span id="cityDanXuan" class="width200px fl_hsCheckData"></span></div>
-            </li>
-            <li class="clearfix">
-                <label class="label_name col-xs-1"><i>*</i>发布栏：&nbsp;&nbsp;</label>
-                <div class="Add_content col-xs-11">
-                    <span class="classification_name l_f"><label ><input type="radio" name="form-field-radio" class="ace"><span class="lbl">新品发布</span></label></span>
-                    <span class="classification_name l_f"><label ><input type="radio" name="form-field-radio" class="ace"><span class="lbl">限时促销</span></label></span>
-                    <span class="classification_name l_f"><label ><input type="radio" name="form-field-radio" class="ace"><span class="lbl">特价处理</span></label></span>
-                    <span class="relative l_f">
-   <button  type="button" onclick="add_category()" class="btn bg-deep-blue operation_btn margin-left">添加分类</button>
-   <div class="add_category_style">
-     <p class="clearfix">
-     <input name="" type="text"  class="l_f form-control" style="width:220px;"/><button style="margin:0px" class="btn button_btn bg-deep-blue l_f" id="add_category" type="button">添加</button>
-     </p>
-     <p class="Prompt"><em>该分类最多添加10个</em></p>
-   </div>
-   </span>
-                </div>
-            </li>
-            <li class="clearfix">
-                <div class="col-xs-4">
-                    <label class="label_name col-xs-3"><i>*</i>商品原价：&nbsp;&nbsp;</label>
-                    <div class="Add_content col-xs-9">
-                        <input name="" type="text"  class="col-xs-7"/><em class="Prompt">元</em>
-                    </div>
-                </div>
-                <div class="col-xs-4">
-                    <label class="label_name col-xs-3"><i>*</i>商品现价：&nbsp;&nbsp;</label>
-                    <div class="Add_content col-xs-9">
-                        <input name="" type="text"  class="col-xs-7"/><em class="Prompt">元</em>
-                    </div>
-                </div>
-                <div class="col-xs-4">
-                    <label class="label_name col-xs-3"><i>*</i>商品数量：&nbsp;&nbsp;</label>
-                    <div class="Add_content col-xs-9">
-                        <input name="" type="text"  class="col-xs-7"/><em class="Prompt">件</em>
-                    </div>
-                </div>
-            </li>
-            <li class="clearfix"><label class="label_name col-xs-1">设置时间：&nbsp;&nbsp;</label>
-                <div class="Add_content col-xs-11">
-                    <label class="l_f checkbox_time"><input type="checkbox" name="checkbox" class="ace" id="checkbox"><span class="lbl">是</span></label>
-                    <div class="Date_selection" style="display:none">
-                        <span class="label_name">开始日：</span><p class="laydate-icon" id="start" style="width:200px; margin-right:10px; height:30px; line-height:30px; float:left"></p>
-                        <span class="label_name">结束日：</span><p class="laydate-icon" id="end" style="width:200px;height:30px; line-height:30px; float:left"></p>
-                    </div>
-                </div>
-            </li>
+            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>商品编码：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input id="product_core"  type="text"  class="col-xs-6"/></div></li>
+            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>商品名称：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input id="product_name" type="text" class="col-xs-4"/></div></li>
+            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>国条码：</label><div class="Add_content col-xs-11"><input id="bar_code" type="text" class="col-xs-4"/><em class="Prompt"> 请用","分隔关键字</em></div></li>
+
+            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>一级分类ID：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input id="one_category_id" type="text" class="col-xs-4"/></div></li>
+            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>状态：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input id="status" type="text" class="col-xs-4"/></div></li>
+            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>生产日期：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input id="production_date" value="2018-08-11" type="text" class="col-xs-4" disabled/></div></li>
+            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>商品保质期：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input id="shelf_life" value="66" type="text" class="col-xs-4" disabled/></div></li>
+            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>商品描述：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input id="descript" type="text" class="col-xs-4"/></div></li>
+            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>商品录入时间：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input value="2018-08-11" id="indate" type="text" class="col-xs-4" disabled/></div></li>
+            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>最后修改时间：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input value="2018-08-11" id="modified_time" type="text" class="col-xs-4" disabled/></div></li>
+            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>属性：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input id="product_attribute" type="text" class="col-xs-4"/></div></li>
+
+                        <li class="clearfix" style="display:none"><label class="label_name col-xs-1" hi>设置时间：&nbsp;&nbsp;</label>
+                            <div class="Add_content col-xs-11">
+                                <div class="Date_selection" style="display:none">
+                                    <span class="label_name">开始日：</span><p class="laydate-icon" id="start" style="width:200px; margin-right:10px; height:30px; line-height:30px; float:left"></p>
+                                    <span class="label_name">结束日：</span><p class="laydate-icon" id="end" style="width:200px;height:30px; line-height:30px; float:left"></p>
+                                </div>
+                            </div>
+                        </li>
             <li class="clearfix"><label class="label_name col-xs-1">SKU配置：&nbsp;&nbsp;</label>
                 <div class="Add_content col-xs-11">
                     <button  type="button" onclick="openDiv1()" id="openList" class="btn bg-deep-blue operation_btn margin-left">展开</button>
@@ -151,25 +118,23 @@
                     </div>
                 </div>
             </li>
-            <li class="clearfix">
-                <label class="label_name col-xs-1"><i>*</i>产品图片：&nbsp;&nbsp;</label>
-                <div class="Add_content col-xs-11" id="Upload">
-                        <div class="images_Upload clearfix margin-bottom" id="images_Upload">
-                            <span class="Upload_img"><input name="file" type="file" /></span>
-                            <a href="javascript:ovid()" class="operating delete_Upload" onclick="delete_Upload(this.id)"><i class="fa fa-remove"></i></a>
-                            <a href="javascript:ovid()" class="operating" title="预览" onclick="preview_img(this.id)"><i class="fa  fa-image"></i></a>
-                        </div>
-                        <button type="button" class="add_Upload bg-deep-blue" id="add_Upload" onclick="add_Upload()"><i class="fa  fa-plus"></i></button>
-                </div>
-            </li>
-            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>内容介绍：&nbsp;&nbsp;</label>
-                <div class="Add_content col-xs-11"><script id="editor" type="text/plain" style="width:100%;height:500px;"></script></div>
-            </li>
         </ul>
+        <li class="clearfix">
+            <label class="label_name col-xs-1"><i>*</i>产品图片：&nbsp;&nbsp;</label>
+            <div class="Add_content col-xs-11" id="Upload">
+                <div class="images_Upload clearfix margin-bottom" id="images_Upload">
+                    <span class="Upload_img"><input name="file" type="file" /></span>
+                    <a href="javascript:ovid()" class="operating delete_Upload" onclick="delete_Upload(this.id)"><i class="fa fa-remove"></i></a>
+                    <a href="javascript:ovid()" class="operating" title="预览" onclick="preview_img(this.id)"><i class="fa  fa-image"></i></a>
+                </div>
+                <button type="button" class="add_Upload bg-deep-blue" id="add_Upload" onclick="add_Upload()"><i class="fa  fa-plus"></i></button>
+            </div>
+        </li>
+
         <div class="Button_operation btn_width">
             <button class="btn button_btn bg-deep-blue" type="button" id="submit">保存并提交</button>
-          <%--  <button class="btn button_btn bg-orange" type="button">保存草稿</button>
-            <button class="btn button_btn bg-gray" type="button">取消添加</button>--%>
+            <%--  <button class="btn button_btn bg-orange" type="button">保存草稿</button>
+              <button class="btn button_btn bg-gray" type="button">取消添加</button>--%>
         </div>
     </div>
 </div>
@@ -193,24 +158,25 @@
     function setProduct(){
         product={
             productId : null,
-            productCore : 233,
-            productName : "商品1号",
-            barCode : "2005",
-            brandName : "45654456",
-            oneCategoryId : 1,
-            twoCategoryId : null,
-            threeCategoryId : null,
-            BigDecimal : 55,
-            originalPrice : 66,
-            status : 0,
-            productionDate : null,
-            shelfLife : null,
+            productCore : $("#product_core").val(),
+            productName : $("#product_name").val(),
+            barCode : $("#bar_code").val(),
+            brandName : $("#brand_name").val(),
+            oneCategoryId : $("#one_category_id").val(),
+            twoCategoryId : $("#two_category_id").val(),
+            threeCategoryId : $("#three_category_id").val(),
+            BigDecimal : $("#product_core").val(),
+            price :$("#price").val(),
+            originalPrice : $("#original_price").val(),
+            status : $("#status").val(),
+            productionDate : $("#production_date").val(),
+            shelfLife : $("#shelf_life").val(),
             indate : null,
-            modifiedTime :null,
-            descript : "dsadasd"
+            modifiedTime :$("#modified_time").val(),
+            descript : $("#descript").val()
         };
         product_attribute = {
-            value : null
+            value : $("#product_attribute").val()
         };
     }
 
@@ -248,12 +214,12 @@
 
     }
     //保存为Dto
-    function setDto(a,b,c,d){
+    function setDto(product,product_attribute,product_pic_infos,skus){
         ProductAddDTO={
-            product : a,
-            product_attribute : b,
-            product_pic_infos :c,
-            skus : d
+            product : product,
+            product_attribute : product_attribute,
+            product_pic_infos :product_pic_infos,
+            skus : skus
         }
 
     }
@@ -292,41 +258,15 @@
     }
     //删除sku表单
     function del_sku(obj) {
-       $(obj).parent().parent().parent().remove();
-        debugger;
+        $(obj).parent().parent().parent().remove();
+
     }
-    var cityData=[
-        {
-            "2":"食品/保健/酒/饮料",
-            "childCity":[
-                {"201":"面包"},
-                {"202":"饼干"},
-                {"203":"白酒"},
-                {"204":"啤酒"},
-                {"205":"葡萄酒"},
-                {"206":"香肠"},
-                {"207":"火腿肠"},
-                {"208":"牛奶"},
-            ]},
-        {
-            "3":"数码影像",
-            "childCity":[
-                {"301":"面包"},
-                {"302":"饼干"},
-                {"303":"白酒"},
-                {"304":"啤酒"},
-                {"305":"葡萄酒"},
-                {"306":"香肠"},
-                {"307":"火腿肠"},
-                {"308":"牛奶"},
-            ]},
-    ];
 
     $(function () {
         $("#div1").hide();
         //提交
         $("#submit").on('click',function () {
-/*
+            debugger;
             $("#Upload input[type$='file']").each(function () {
                 fileFrom = new FormData();
                 fileFrom.append('file', $(this)[0].files[0]);
@@ -351,7 +291,7 @@
                 });
 
             });
-*/
+
             var skuData = new Array();
             $("#div1 input").each(function () {
                 if($(this).attr("type")=="file"){
@@ -389,17 +329,35 @@
 
 
             });
+            setProduct();
+            setDto(product,product_attribute,product_pic_infos,skus);
+            $.ajax({
+                type:"post",
+                url:"/product/add",
+                dataType:"json",
+                // data: ProductAddDTO,
+                contentType : 'application/json;charset=utf-8',
+                data : JSON.stringify(ProductAddDTO),
+                success:function(data){
+                    debugger;
+                    if(data.success){
+                        location.href="/system/shops_index";
+                        layer.close(index);
+                    }else{
+                        layer.alert(data.message,{
+                            title: '提示框',
+                            icon:1,
+                        });
 
+                    }
+                },
+            });
 
         });
 
 
     });
 
-    $('#cityDanXuan').hsCheckData({
-        isShowCheckBox: false, //默认为false
-        data: cityData
-    });
     $(function(){
         var ue = UE.getEditor('editor');
     });
