@@ -42,6 +42,7 @@
             <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>商品编码：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input id="product_core"  type="text"  class="col-xs-6"/></div></li>
             <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>商品名称：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input id="product_name" type="text" class="col-xs-4"/></div></li>
             <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>国条码：</label><div class="Add_content col-xs-11"><input id="bar_code" type="text" class="col-xs-4"/><em class="Prompt"> 请用","分隔关键字</em></div></li>
+            <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>价格：</label><div class="Add_content col-xs-11"><input id="price" type="text" class="col-xs-4"/><em class="Prompt"> 请用","分隔关键字</em></div></li>
 
             <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>一级分类ID：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input id="one_category_id" type="text" class="col-xs-4"/></div></li>
             <li class="clearfix"><label class="label_name col-xs-1"><i>*</i>状态：&nbsp;&nbsp;</label><div class="Add_content col-xs-11"><input id="status" type="text" class="col-xs-4"/></div></li>
@@ -223,6 +224,18 @@
         }
 
     }
+    //清空数据对象
+    function reloadDto(){
+         ProductAddDTO=null;
+         product=null;
+         product_attribute=null;
+         product_pic_info=null;
+         product_pic_infos=  new Array();
+         sku=null;
+         skus = new Array();
+         sku_attribute=null;
+         fileFrom=null;
+    }
     //添加sku表单
     function add_sku() {
         $("#div2").append("                    <div class=\"panel panel-default\">\n" +
@@ -266,7 +279,6 @@
         $("#div1").hide();
         //提交
         $("#submit").on('click',function () {
-            debugger;
             $("#Upload input[type$='file']").each(function () {
                 fileFrom = new FormData();
                 fileFrom.append('file', $(this)[0].files[0]);
@@ -344,6 +356,7 @@
                         location.href="/system/shops_index";
                         layer.close(index);
                     }else{
+                        reloadDto();
                         layer.alert(data.message,{
                             title: '提示框',
                             icon:1,
