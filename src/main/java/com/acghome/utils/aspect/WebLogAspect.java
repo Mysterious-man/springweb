@@ -78,7 +78,13 @@ public class WebLogAspect {
         Object result = proceedingJoinPoint.proceed();
         // 打印出参
         ObjectMapper mapper = new ObjectMapper();
-        logger.info("Response Args  : {}", mapper.writeValueAsString(result));
+        String result_info= null;
+        try {
+            result_info = mapper.writeValueAsString(result);
+        } catch (JsonProcessingException e) {
+            logger.info("Response Args   : 因jackson序列化请求参数时抛出异常，返回参数获取失败");
+        }
+        logger.info("Response Args  : {}",result_info );
         // 执行耗时
         logger.info("Time-Consuming : {} ms", System.currentTimeMillis() - startTime);
         return result;

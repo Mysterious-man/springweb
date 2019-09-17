@@ -47,11 +47,17 @@ public class ResultGenerator {
         return genFailResult(message,data);
     }
 
-    public static Result genFailResult(String message,Object data) {
+    public static Result genFailResult(String message,String data) {
+
+        return  genFailResult(message,data,FAIL_CODE);
+    }
+
+
+    public static Result genFailResult(String message,String data,int code) {
 
         Result result=new Result();
 
-        result.setCode(FAIL_CODE);
+        result.setCode(code);
         result.setMessage(message);
         result.setSuccess(Boolean.FALSE);
 
