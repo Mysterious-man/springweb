@@ -18,7 +18,7 @@ public class ResultGenerator {
     private static final int INTERNAL_SERVER_ERROR=500; //服务器内部错误
 
 
-    public static Object genSuccessResult() {
+    public static Result genSuccessResult() {
 
         String data="";
 

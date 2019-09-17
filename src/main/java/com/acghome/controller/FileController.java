@@ -1,10 +1,9 @@
 package com.acghome.controller;
 
 
-import com.acghome.utils.Constants;
+import com.acghome.utils.ResourcePath;
 import com.acghome.utils.Result;
 import com.acghome.utils.ResultGenerator;
-import com.acghome.entity.db1.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,28 +16,28 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.UUID;
 
 
 @Controller
-@RequestMapping(value = "/picture")
+@RequestMapping(value = "/")
 
-public class PictureController {
+public class FileController {
 
 
 
     @Autowired
     private com.acghome.service.IUserService IUserService;
 
-    private final static Logger logger = LoggerFactory.getLogger(PictureController.class);
+    private final static Logger logger = LoggerFactory.getLogger(FileController.class);
 
 
 
     @ResponseBody
-    @RequestMapping(value = "/upload")
-    public Result saveUpload(@RequestParam("file") MultipartFile fileinput) {
+    @RequestMapping(value = "picture/upload")
+    public Result saveUpload(@RequestParam("file") MultipartFile fileinput, HttpServletRequest request) {
+
 
 
         if (fileinput.isEmpty()) {
@@ -52,8 +51,9 @@ public class PictureController {
         // 生成图片存储的名称，UUID 避免相同图片名冲突，并加上图片后缀
         String fileName = UUID.randomUUID().toString() + suffix;
         // 图片存储路径
-        Path filePath =Constants.getImgPath().resolve(fileName);
-        ;
+        Path filePath = ResourcePath.getImgAbsPath(request).resolve(fileName);
+        //图片的相对访问路径
+        String url=ResourcePath.getImgPath().resolve(fileName).toString();
 
         try {
 
@@ -64,8 +64,9 @@ public class PictureController {
         }
 
         HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("url",fileName);
-        map.put("IMG_PATH",filePath.toUri().getPath());
+        map.put("url",url);
+        map.put("img_abspath",filePath.toString());
+
         return ResultGenerator.genSuccessResult(map);
 
     }
@@ -75,14 +76,14 @@ public class PictureController {
 
     @ResponseBody
     @GetMapping("download")
-    public String downloadFile(HttpServletResponse response) {
-        String fileName = "20190902114314.jpg";
-        Path filePath = Constants.getImgPath().resolve(fileName);
+    public Result downloadFile(HttpServletResponse response, HttpServletRequest request) {
+        String fileName = "Spring.docx";
+        Path filePath = ResourcePath.getfileAbsPath(request).resolve(fileName);
 
         File file = filePath.toFile();
 
         if (!file.exists()) {
-            return "error file miss";
+            return ResultGenerator.genFailResult("该文件不存在不能下载");
         }
         response.setContentType("application/force-download");
         response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);
@@ -118,7 +119,7 @@ public class PictureController {
                     e.printStackTrace();
                 }
             }
-            return "ok";
+            return  ResultGenerator.genSuccessResult();
 
         }
 

@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/product")
 public class ProductController {
 
-    private final static Logger logger = LoggerFactory.getLogger(PictureController.class);
+    private final static Logger logger = LoggerFactory.getLogger(FileController.class);
 
     @Autowired
     private RedisTemplate<Object, Object> redisTemplate;
