@@ -34,11 +34,11 @@ public class ApiControllerAdvice {
     @ExceptionHandler(value = HttpMessageNotReadableException.class)
     public Result handleMethodArgumentNotValidException(HttpMessageNotReadableException ex){
 
-        String data=ex.getMessage();
+        String data= String.format("数据参数验证失败:%s ", ex.getCause().getMessage());
 
-        logger.error("数据参数验证失败 "+data, ex);
+        logger.error(data, ex);
 
-        return ResultGenerator.genFailResult("数据参数验证失败");
+        return ResultGenerator.genFailResult("数据参数验证失败",ex.getCause().getMessage());
     }
 
 
@@ -53,7 +53,6 @@ public class ApiControllerAdvice {
 
         logger.error(ex.getMsg(), ex);
 
-
         return ResultGenerator.genFailResult(ex.getMsg(),"",ex.getCode());
     }
 
@@ -67,9 +66,11 @@ public class ApiControllerAdvice {
     @ExceptionHandler(value = Exception.class)
     public Result errorHandler(Exception ex) {
 
-        logger.error(ex.getMessage(), ex);
+        String msg= String.format("接口报错:%s ", ex.getMessage());
 
-        return  ResultGenerator.genFailResult(ex.getMessage());
+        logger.error(msg,ex);
+
+        return  ResultGenerator.genFailResult("接口报错",ex.getMessage());
     }
 
 

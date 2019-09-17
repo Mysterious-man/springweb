@@ -47,9 +47,9 @@
             <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
         <!--</table>-->
 
-        <table tableName="product" domainObjectName="Product"  enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"  >
-            <generatedKey column="product_id" sqlStatement="JDBC"/>
-        </table>
+        <!--<table tableName="product" domainObjectName="Product"  enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"  >-->
+            <!--<generatedKey column="product_id" sqlStatement="JDBC"/>-->
+        <!--</table>-->
         <!--<table tableName="product_attribute" domainObjectName="Product_attribute"  enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"  >-->
             <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
         <!--</table>-->
