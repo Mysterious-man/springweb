@@ -1,5 +1,6 @@
 package com.acghome.service;
 
+import com.acghome.pojo.dto.GetProductEditDTO;
 import com.acghome.pojo.dto.ProductAddDTO;
 import com.acghome.pojo.dto.ProductUpdateDTO;
 import com.acghome.entity.db1.Product;
@@ -16,7 +17,7 @@ public interface IProductService {
     int update(Product product);
 
 
-    public Object getProductAndSku(int product_id);
+    public GetProductEditDTO getProductAndSku(int product_id);
 
 
     public Map<String, Object> addProductAndSku(ProductAddDTO productAddbean);

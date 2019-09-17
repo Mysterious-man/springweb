@@ -2,6 +2,7 @@ package com.acghome.controller;
 
 
 
+import com.acghome.pojo.dto.GetProductEditDTO;
 import com.acghome.pojo.dto.ProductAddDTO;
 import com.acghome.service.*;
 import com.acghome.utils.ApiValidator;
@@ -20,6 +21,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 @Controller
@@ -110,12 +112,25 @@ public class ProductController {
 
         Object productAndSkuInfo = redisTemplate.opsForValue().get(product_key);
 
+
         if (productAndSkuInfo!=null) {
+
+                if (productAndSkuInfo.getClass().isInstance("") && (String)productAndSkuInfo==""){
+                    return ResultGenerator.genFailResult("该产品id不存在");
+                }
 
                 return ResultGenerator.genSuccessResult(productAndSkuInfo);
 
         } else {
-            Object result_data = productService.getProductAndSku(product_id);
+
+            GetProductEditDTO result_data = productService.getProductAndSku(product_id);
+
+            if (result_data.getProduct() == null) {
+
+                redisTemplate.opsForValue().set(product_key,"",15, TimeUnit.SECONDS);
+                return ResultGenerator.genFailResult("该产品id不存在");
+            }
+
 
             redisTemplate.opsForValue().set(product_key,result_data);
 

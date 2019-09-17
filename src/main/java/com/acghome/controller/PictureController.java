@@ -39,7 +39,8 @@ public class PictureController {
     @ResponseBody
     @RequestMapping(value = "/upload")
     public Result saveUpload(@RequestParam("file") MultipartFile fileinput, HttpServletRequest request) {
-        String realPath = request.getSession().getServletContext().getRealPath("").replace("webapp\\","")+"resources\\temp\\";
+
+
         if (fileinput.isEmpty()) {
             return ResultGenerator.genFailResult("上传图片为null");
         }
@@ -51,13 +52,15 @@ public class PictureController {
         // 生成图片存储的名称，UUID 避免相同图片名冲突，并加上图片后缀
         String fileName = UUID.randomUUID().toString() + suffix;
         // 图片存储路径
-        String filePath =realPath + fileName;
+        Path filePath =Constants.getImgPath().resolve(fileName);
 
+
+        String s = filePath.toString();
+        String s1 = filePath.toUri().getPath();
 
         try {
-            Path path = Paths.get(filePath);
 
-            Files.write(path, fileinput.getBytes());
+            Files.write(filePath, fileinput.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
             return ResultGenerator.genFailResult("上传图片失败");
@@ -65,10 +68,11 @@ public class PictureController {
 
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("url",fileName);
-        map.put("IMG_PATH",filePath);
+        map.put("IMG_PATH",filePath.toUri().getPath());
         return ResultGenerator.genSuccessResult(map);
 
     }
+
 
 
 
@@ -76,9 +80,9 @@ public class PictureController {
     @GetMapping("download")
     public String downloadFile(HttpServletResponse response) {
         String fileName = "20190902114314.jpg";
-        String filePath = Constants.IMG_PATH + fileName;
+        Path filePath = Constants.getImgPath().resolve(fileName);
 
-        File file = new File(filePath);
+        File file = filePath.toFile();
 
         if (!file.exists()) {
             return "error file miss";

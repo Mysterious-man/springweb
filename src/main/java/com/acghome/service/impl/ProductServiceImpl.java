@@ -219,7 +219,7 @@ public class ProductServiceImpl implements IProductService {
 
 
     @Override
-    public Object getProductAndSku(int product_id) {
+    public GetProductEditDTO getProductAndSku(int product_id) {
 
         ProductDetail productDetail =  getProductDetailMapper.selectProductDetail(product_id);
 

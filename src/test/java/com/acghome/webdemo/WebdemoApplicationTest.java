@@ -1,14 +1,11 @@
 package com.acghome.webdemo;
-import com.acghome.entity.db1.Product;
+import com.acghome.controller.mq.Producer;
 import com.acghome.service.IProductService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 
 @RunWith(SpringRunner.class)
@@ -19,8 +16,29 @@ public class WebdemoApplicationTest {
     @Autowired
     private IProductService productService;
 
+//    @Autowired
+//    RedisTemplate<String, Object> redisTemplate;
+
     @Autowired
-    RedisTemplate<String, Object> redisTemplate;
+    private Producer producer;
+
+    @Test
+    public void testStringSend() {
+
+//        Integer product_id=5;
+//        String product_key="GetProductAndSkuEdit_product_id_"+product_id.toString();
+//
+//        producer.productChangeSend(product_key,product_id);
+    }
+
+
+
+
+    @Test
+    public void sayHelloTest() {
+        System.out.println("test start");
+    }
+
 
 //    @Test
 //    public void productTest() {
@@ -29,19 +47,16 @@ public class WebdemoApplicationTest {
 //    }
 
 
-    @Test
-    public void addTest() {
-        //这里相当于redis对String类型的set操作
-        redisTemplate.opsForValue().set("test","newrush");
-        //这里相当于redis对String类型的get操作
-        String test = (String)redisTemplate.opsForValue().get("test");
-        System.out.println(test);
-    }
+//    @Test
+//    public void addTest() {
+//        //这里相当于redis对String类型的set操作
+//        redisTemplate.opsForValue().set("test","newrush");
+//        //这里相当于redis对String类型的get操作
+//        String test = (String)redisTemplate.opsForValue().get("test");
+//        System.out.println(test);
+//    }
 
 
-    @Test
-    public void sayHelloTest() {
-        System.out.println("test start");
-    }
+
 
 }

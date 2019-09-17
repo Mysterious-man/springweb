@@ -42,6 +42,21 @@ spring:
         min-idle: 0
     timeout: 0
 
+  rabbitmq:
+    addresses: 104.168.195.152
+    username: test
+    password: 123456
+    port: 5672
+    publisher-confirms: false
+    publisher-returns: false
+    listener:
+      direct:
+        acknowledge-mode: auto
+      simple:
+        acknowledge-mode: auto
+    template:
+      receive-timeout:
+
 
 
 
