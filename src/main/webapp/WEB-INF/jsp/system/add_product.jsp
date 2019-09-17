@@ -291,7 +291,7 @@
                     processData: false,
                     success:function(data){
                         if(data.success){
-                            setProductInfo("没有描述",data.data.IMG_PATH,0);
+                            setProductInfo("没有描述",data.data.url,0);
                         }else{
                             layer.alert(data.message,{
                                 title: '提示框',
@@ -321,7 +321,7 @@
                             processData: false,
                             success:function(data){
                                 if(data.success){
-                                    setProductInfo("没有描述",data.data.IMG_PATH,1);
+                                    setProductInfo("没有描述",data.data.url,1);
                                     setSku(product_pic_info,skuData[0],skuData[1],skuData[2],skuData[3],skuData[4],skuData[5],skuData[6],skuData[7]);
                                     skuData = new Array();
                                 }else{
