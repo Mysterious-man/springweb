@@ -353,8 +353,14 @@
                 success:function(data){
                     debugger;
                     if(data.success){
-                        location.href="/system/shops_index";
-                        layer.close(index);
+                        layer.alert(data.message,{
+                            title: '提示框',
+                            icon:1,
+                        },function () {
+                            location.href="/system/shops_index";
+                            layer.close(index);
+                        });
+
                     }else{
                         reloadDto();
                         layer.alert(data.message,{
