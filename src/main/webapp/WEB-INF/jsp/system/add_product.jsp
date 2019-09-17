@@ -357,8 +357,7 @@
                             title: '提示框',
                             icon:1,
                         },function () {
-                            location.href="/system/shops_index";
-                            layer.close(index);
+                            window.location.href="/product/Brand_Manage";
                         });
 
                     }else{
