@@ -17,10 +17,8 @@ import java.nio.file.Paths;
  */
 public class Constants {
 
-    //public static final String IMG_PATH="/Users/tmh/Documents/code project/webdemo/src/main/resources/temp/";
 
-
-
+    //图片路径在classpath下的temp文件夹
     public static Path getImgPath() {
 
         Path path = getClassPath().resolve("temp");
@@ -30,12 +28,17 @@ public class Constants {
 
 
     public static Path getClassPath() {
-        URL url = Constants.class.getClassLoader().getResource("");
+        String url = Constants.class.getClassLoader().getResource("").getPath();
         String urlpath = null;
+        String os = System.getProperty("os.name");
+
+        //win系统的绝对路径第一个字符没有/，所以去掉
+        if(os.toLowerCase().startsWith("win")){
+            url=url.substring(1,url.length()-1);
+        }
 
         try {
-            assert url != null;
-            urlpath = URLDecoder.decode(url.getPath(), "UTF-8");
+            urlpath = URLDecoder.decode(url, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

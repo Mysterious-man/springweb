@@ -38,7 +38,7 @@ public class PictureController {
 
     @ResponseBody
     @RequestMapping(value = "/upload")
-    public Result saveUpload(@RequestParam("file") MultipartFile fileinput, HttpServletRequest request) {
+    public Result saveUpload(@RequestParam("file") MultipartFile fileinput) {
 
 
         if (fileinput.isEmpty()) {
@@ -53,10 +53,7 @@ public class PictureController {
         String fileName = UUID.randomUUID().toString() + suffix;
         // 图片存储路径
         Path filePath =Constants.getImgPath().resolve(fileName);
-
-
-        String s = filePath.toString();
-        String s1 = filePath.toUri().getPath();
+        ;
 
         try {
 
