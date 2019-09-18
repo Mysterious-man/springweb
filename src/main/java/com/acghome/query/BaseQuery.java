@@ -1,51 +1,50 @@
 package com.acghome.query;
 
+import com.acghome.utils.exception.RequestException;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class BaseQuery {
 
-	private int page = 1;//第几页  兼容easyui的分页
-	private int rows = 10;//当前页显示的条目数量
-	private  int start;
-	
-	private String q;//关键字查询，为了兼容easyui的combogrid,keyword关键字
-	
-	private Integer state;//状态字段
-	
-	public BaseQuery(int page, int rows) {
-		super();
-		this.page = page;
-		this.rows = rows;
+	private int offset;
+	private int limit;
+	private int pageMaxNo;
+
+
+	public BaseQuery(int pageNo, int pageSize, int total) throws RequestException {
+
+		if (pageNo <= 0 || pageSize <= 0 || total <= 0) {
+			throw new RequestException();
+		}
+		if (total % pageSize == 0) {
+			pageMaxNo = total / pageSize;
+
+		} else {
+			pageMaxNo = total / pageSize + 1;
+		}
+		if (pageNo > pageMaxNo) {
+			throw new RequestException();
+		}
+		if (pageSize * pageNo <= total) {
+			offset = pageSize * (pageNo - 1);
+			limit = pageSize * pageNo - 1;
+		} else {
+			offset = pageSize * (pageMaxNo - 1);
+			limit = total - 1;
+		}
 	}
-	public int getPage() {
-		return page;
+
+
+	public int getOffset() {
+		return offset;
 	}
-	public void setPage(int page) {
-		this.page = page;
+
+	public int getLimit() {
+		return limit;
 	}
-	public int getRows() {
-		return rows;
+
+	public int getPageMaxNo() {
+		return pageMaxNo;
 	}
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
-	public BaseQuery() {
-		super();
-	}
-	
-	
-	public int getStart(){
-		return (page-1)*rows;
-	}
-	public String getQ() {
-		return q;
-	}
-	public void setQ(String q) {
-		this.q = q;
-	}
-	public Integer getState() {
-		return state;
-	}
-	public void setState(Integer state) {
-		this.state = state;
-	}
-	
 }

@@ -1,12 +1,9 @@
-package com.acghome.pojo.dto;
+package com.acghome.pojo.dto.accept;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.validation.annotation.Validated;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +12,7 @@ import java.util.List;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ProductAddDTO implements Serializable {
+public class ProductUpdateDTO implements Serializable {
 
     @Override
     public String toString() {
@@ -27,19 +24,14 @@ public class ProductAddDTO implements Serializable {
                 '}';
     }
     @NotNull
-    @Valid
     private ProductBean product;
     @NotNull
     private ProductAttributeBean product_attribute;
+    @NotNull
+    private List<ProductPicInfoBean> product_pic_infos;
 
     @NotNull
-    @Valid
-    public List<ProductPicInfoBean> product_pic_infos;
-
-    @NotNull
-    @NotEmpty
-    @Valid
-    public List<SkuBean> skus;
+    private List<SkuBean> skus;
 
     public ProductBean getProduct() {
         return product;
@@ -75,7 +67,11 @@ public class ProductAddDTO implements Serializable {
 
     public static class SkuBean {
 
+
         @NotNull
+        @NotBlank
+        private Integer id;
+
         private String skuCode;
 
         private BigDecimal price;
@@ -90,11 +86,19 @@ public class ProductAddDTO implements Serializable {
 
         private Integer lockStock;
 
-
+        @NotNull
         private ProductPicInfoBean sku_pic_info;
 
         @NotNull
         private SkuAttribute sku_attribute;
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
 
         public SkuAttribute getSku_attribute() {
             return sku_attribute;
@@ -208,8 +212,6 @@ public class ProductAddDTO implements Serializable {
 
         private String picDesc;
 
-        @NotNull
-        @NotBlank
         private String picUrl;
 
         private Integer isMaster;
@@ -279,11 +281,12 @@ public class ProductAddDTO implements Serializable {
          * descript : ok de
          * indate : 2019-09-10 15:46:30
          */
+
+        @NotNull
         private Integer productId;
 
         private String productCore;
 
-        @NotNull
         private String productName;
 
         private String barCode;
@@ -296,7 +299,6 @@ public class ProductAddDTO implements Serializable {
 
         private Integer threeCategoryId;
 
-        @NotNull
         private BigDecimal price;
 
         private BigDecimal originalPrice;

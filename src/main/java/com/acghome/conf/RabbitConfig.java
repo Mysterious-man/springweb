@@ -30,7 +30,7 @@ public class RabbitConfig {
      * 定义队列名
      */
     //用于产品和sku信息变更时发送消息
-    public final static String PRODUCT_INFO_1 = "ProductAndSkuEditInfo";
+    public final static String PRODUCT_INFO_1 = "ProductAndSkuUpdate";
 
 
 

@@ -1,7 +1,6 @@
 package com.acghome.service.mq;
 
-import com.acghome.controller.FileController;
-import com.acghome.pojo.dto.GetProductEditDTO;
+import com.acghome.pojo.dto.export.GetProductEditDTO;
 import com.acghome.service.IProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;

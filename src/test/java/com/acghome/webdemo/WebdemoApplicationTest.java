@@ -23,19 +23,6 @@ public class WebdemoApplicationTest {
     @Autowired
     private Producer producer;
 
-    @Test
-    public void testStringSend() {
-
-        for (int i = 0; i <5; i++) {
-            String  product_id=String.valueOf(5);
-            String product_key="GetProductAndSkuEdit_product_id_"+ product_id;
-
-            producer.productChangeSend(product_key,product_id);
-
-        }
-
-
-    }
 
 
 
@@ -46,6 +33,22 @@ public class WebdemoApplicationTest {
     }
 
 
+
+//    //执行测试代码时 消费者不会被运行
+//    @Test
+//    public void mqSendTest() {
+//
+//        for (int i = 0; i <5; i++) {
+//            String  product_id=String.valueOf(5);
+//            String product_key="GetProductAndSkuEdit_product_id_"+ product_id;
+//
+//            producer.productChangeSend(product_key,product_id);
+//
+//        }
+//
+//    }
+
+
 //    @Test
 //    public void productTest() {
 //        Product product = productService.getProductById(1);
@@ -54,7 +57,7 @@ public class WebdemoApplicationTest {
 
 
 //    @Test
-//    public void addTest() {
+//    public void redisTest() {
 //        //这里相当于redis对String类型的set操作
 //        redisTemplate.opsForValue().set("test","newrush");
 //        //这里相当于redis对String类型的get操作

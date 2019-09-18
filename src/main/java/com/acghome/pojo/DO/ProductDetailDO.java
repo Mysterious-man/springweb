@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-public class ProductDetail implements Serializable {
+public class ProductDetailDO implements Serializable {
 
 
     private static final long serialVersionUID = 1L;

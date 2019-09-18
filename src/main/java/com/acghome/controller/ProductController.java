@@ -2,12 +2,16 @@ package com.acghome.controller;
 
 
 
-import com.acghome.pojo.dto.GetProductEditDTO;
-import com.acghome.pojo.dto.ProductAddDTO;
+import com.acghome.entity.db1.ProductExample;
+import com.acghome.mapper.db1.ProductMapper;
+import com.acghome.pojo.dto.export.GetProductEditDTO;
+import com.acghome.pojo.dto.accept.ProductAddDTO;
+import com.acghome.pojo.dto.export.ProductAndSkuDTO;
+import com.acghome.query.BaseQuery;
 import com.acghome.service.*;
 import com.acghome.service.mq.Producer;
 import com.acghome.utils.ApiValidator;
-import com.acghome.pojo.dto.ProductUpdateDTO;
+import com.acghome.pojo.dto.accept.ProductUpdateDTO;
 import com.acghome.utils.Result;
 import com.acghome.utils.ResultGenerator;
 import com.acghome.utils.UserContext;
@@ -21,6 +25,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -42,6 +48,9 @@ public class ProductController {
 
     @Autowired
     Producer producer;
+
+    @Autowired
+    private ProductMapper productMapper;
 
 
 
@@ -143,6 +152,39 @@ public class ProductController {
 
 
     }
+
+
+    /**
+     * pageNo  当前第几页,从第一页开始
+     * pageSize 每页的行数量
+     *
+     * */
+
+    @ResponseBody
+    @RequestMapping(value = "/manage_list",method = RequestMethod.POST )
+    public Result GetManageList(@RequestBody Map<String,Object> request_data) {
+
+        int pageNo= (int) request_data.get("pageNo");
+        int pageSize= (int) request_data.get("pageSize");
+
+        int total=productMapper.countByExample(new ProductExample());
+        BaseQuery query = new BaseQuery(pageNo,pageSize,total);
+
+
+        List<ProductAndSkuDTO> productAndSkulist = productService.getProductAndSkulist(query.getOffset(), query.getLimit());
+
+
+        HashMap<String, Object> map = new HashMap<>();
+
+        map.put("total",total);
+        map.put("rows",productAndSkulist);
+        map.put("PageMaxNo",query.getPageMaxNo());
+
+        return ResultGenerator.genSuccessResult(map);
+
+    }
+
+
 
 
 

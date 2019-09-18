@@ -1,10 +1,12 @@
 package com.acghome.service;
 
-import com.acghome.pojo.dto.GetProductEditDTO;
-import com.acghome.pojo.dto.ProductAddDTO;
-import com.acghome.pojo.dto.ProductUpdateDTO;
+import com.acghome.pojo.dto.export.GetProductEditDTO;
+import com.acghome.pojo.dto.accept.ProductAddDTO;
+import com.acghome.pojo.dto.accept.ProductUpdateDTO;
 import com.acghome.entity.db1.Product;
+import com.acghome.pojo.dto.export.ProductAndSkuDTO;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IProductService {
@@ -25,7 +27,7 @@ public interface IProductService {
 
     public Map<String, Object> updateProductAndSku(ProductUpdateDTO productUpdateDTO);
 
-
+    public List<ProductAndSkuDTO> getProductAndSkulist(int offset, int limit);
 
 
 }

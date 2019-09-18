@@ -47,13 +47,13 @@ public class ResultGenerator {
         return genFailResult(message,data);
     }
 
-    public static Result genFailResult(String message,String data) {
+    public static Result genFailResult(String message,Object data) {
 
         return  genFailResult(message,data,FAIL_CODE);
     }
 
 
-    public static Result genFailResult(String message,String data,int code) {
+    public static Result genFailResult(String message,Object data,int code) {
 
         Result result=new Result();
 

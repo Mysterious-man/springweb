@@ -5,11 +5,11 @@ spring:
   datasource:
     #链接池
     hikari: # https://github.com/brettwooldridge/HikariCP (uses milliseconds for all time values)
-      maximumPoolSize: 10 #连接池中允许的最大连接数。缺省值：10
+      maximumPoolSize: 20 #连接池中允许的最大连接数。缺省值：10
       minimumIdle: 10   #最小空闲连接数量
-      idleTimeout: 600000
+      idleTimeout: 60000  #连接空闲时间
       connectionTimeout: 30000
-      maxLifetime: 1800000  #一个连接的生命时长（毫秒）
+      maxLifetime: 600000  #一个连接的生命时长（毫秒）
 
     #数据源1
     db1:

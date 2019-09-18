@@ -2,13 +2,16 @@ package com.acghome.service.impl;
 
 import com.acghome.mapper.db1.*;
 import com.acghome.mapper.db1.join.GetProductDetailMapper;
-import com.acghome.pojo.DO.ProductDetail;
-import com.acghome.pojo.DO.SkuDetail;
-import com.acghome.pojo.dto.GetProductEditDTO;
-import com.acghome.pojo.dto.ProductAddDTO;
+import com.acghome.pojo.DO.ProductAndSkuDO;
+import com.acghome.pojo.DO.ProductDetailDO;
+import com.acghome.pojo.DO.SkuDetailDO;
+import com.acghome.pojo.dto.export.GetProductEditDTO;
+import com.acghome.pojo.dto.accept.ProductAddDTO;
 import com.acghome.entity.db1.*;
-import com.acghome.pojo.dto.ProductUpdateDTO;
+import com.acghome.pojo.dto.accept.ProductUpdateDTO;
 import com.acghome.entity.ErpMockSku;
+import com.acghome.pojo.dto.export.ProductAndSkuDTO;
+import com.acghome.query.BaseQuery;
 import com.acghome.service.IProductService;
 import com.acghome.utils.exception.RequestException;
 import org.springframework.beans.BeanUtils;
@@ -46,13 +49,29 @@ public class ProductServiceImpl implements IProductService {
 
 
 
+
+    @Override
+    public int update(Product product) {
+        return productMapper.updateByPrimaryKeySelective(product);
+    }
+
+    @Override
+    public Product getProductById(int id) {
+        return productMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int addProduct(Product product) {
+        return productMapper.insert(product);
+    }
+
+
     @Override
     public Map<String, Object> addProductAndSku(ProductAddDTO productAddbean){
 
         Map<String, Object> result_data = new HashMap<>();
         List<Integer> sku_list = new ArrayList<>();
 
-//        logger.info(productAddbean.toString());
 
         Product product=new Product();
         Product_attribute product_attribute=new Product_attribute();
@@ -221,31 +240,43 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public GetProductEditDTO getProductAndSku(int product_id) {
 
-        ProductDetail productDetail =  getProductDetailMapper.selectProductDetail(product_id);
+        ProductDetailDO productDetailDO =  getProductDetailMapper.selectProductDetail(product_id);
 
-        List<SkuDetail> skuDetails = getProductDetailMapper.selectSkusDetail(product_id);
+        List<SkuDetailDO> skuDetails = getProductDetailMapper.selectSkusDetail(product_id);
 
         GetProductEditDTO productEditDTO = new GetProductEditDTO();
 
-        productEditDTO.setProduct(productDetail);
+        productEditDTO.setProduct(productDetailDO);
 
         productEditDTO.setSkus(skuDetails);
 
         return productEditDTO;
     }
 
-    @Override
-    public int update(Product product) {
-        return productMapper.updateByPrimaryKeySelective(product);
-    }
 
     @Override
-    public Product getProductById(int id) {
-        return productMapper.selectByPrimaryKey(id);
-    }
+    public List<ProductAndSkuDTO> getProductAndSkulist(int offset, int limit) {
 
-    @Override
-    public int addProduct(Product product) {
-        return productMapper.insert(product);
+
+        List<ProductAndSkuDTO> productAndSkuDTO_list = new ArrayList<>();
+
+        List<ProductAndSkuDO> productAndSkuDO_list = getProductDetailMapper.selectProductAndSku(offset,limit);
+
+        for (ProductAndSkuDO productAndSkuDO : productAndSkuDO_list){
+
+
+            Product product = productAndSkuDO.getProduct();
+            List<Product_sku> product_sku_list = productAndSkuDO.getProduct_sku_List();
+
+
+
+
+
+        }
+
+
+
+
+        return null;
     }
 }
