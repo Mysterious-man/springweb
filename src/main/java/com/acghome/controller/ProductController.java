@@ -162,7 +162,7 @@ public class ProductController {
 
     @ResponseBody
     @RequestMapping(value = "/manage_list",method = RequestMethod.POST )
-    public Result GetManageList(@RequestBody Map<String,Object> request_data) {
+    public Map GetManageList(@RequestBody Map<String,Object> request_data) {
 
         int pageNo= (int) request_data.get("pageNo");
         int pageSize= (int) request_data.get("pageSize");
@@ -180,7 +180,7 @@ public class ProductController {
         map.put("rows",productAndSkulist);
         map.put("PageMaxNo",query.getPageMaxNo());
 
-        return ResultGenerator.genSuccessResult(map);
+        return map;
 
     }
 
