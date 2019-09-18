@@ -109,7 +109,7 @@
             detailView: false,                   //是否显示父子表
             columns: [{
                 title: '序号',
-                width:40,
+                width:60,
                 align: 'center',
                 formatter: function (value, row, index) {
                     return index+1;

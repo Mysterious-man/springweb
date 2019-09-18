@@ -163,7 +163,6 @@ public class ProductController {
     @ResponseBody
     @RequestMapping(value = "/manage_list",method = RequestMethod.POST )
     public Map GetManageList(@RequestBody Map<String,Object> request_data) {
-
         int pageNo= (int) request_data.get("pageNo");
         int pageSize= (int) request_data.get("pageSize");
 
