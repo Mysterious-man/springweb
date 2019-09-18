@@ -267,13 +267,10 @@ public class ProductServiceImpl implements IProductService {
             List<Product_sku> sku_list = productAndSkuDO.getProduct_sku_List();
             ProductAndSkuDTO dto = new ProductAndSkuDTO();
 
-
-            ProductAndSkuDTO.ProductBean productBean = dto.getProduct();
-            BeanUtils.copyProperties(product,productBean);
-            dto.setProduct(productBean);
-
+            BeanUtils.copyProperties(product,dto);
 
             List<ProductAndSkuDTO.SkuBean> skus = dto.getSkus();
+
             for(Product_sku sku: sku_list){
                 ProductAndSkuDTO.SkuBean skuBean = new ProductAndSkuDTO.SkuBean();
                 skuBean.setId(sku.getId());

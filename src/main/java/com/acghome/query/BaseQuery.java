@@ -15,7 +15,7 @@ public class BaseQuery {
 	public BaseQuery(int pageNo, int pageSize, int total) throws RequestException {
 
 		if (pageNo <= 0 || pageSize <= 0 || total <= 0) {
-			throw new RequestException();
+			throw new RequestException("pageNo或pageSize参数异常");
 		}
 		if (total % pageSize == 0) {
 			pageMaxNo = total / pageSize;
@@ -24,7 +24,7 @@ public class BaseQuery {
 			pageMaxNo = total / pageSize + 1;
 		}
 		if (pageNo > pageMaxNo) {
-			throw new RequestException();
+			throw new RequestException("pageNo超过可查询范围");
 		}
 		if (pageSize * pageNo <= total) {
 			offset = pageSize * (pageNo - 1);

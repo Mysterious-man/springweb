@@ -3,6 +3,7 @@ package com.acghome.utils.aspect;
 import com.acghome.utils.Result;
 import com.acghome.utils.ResultGenerator;
 import com.acghome.utils.exception.ApiException;
+import com.acghome.utils.exception.RequestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -43,18 +44,39 @@ public class ApiControllerAdvice {
 
 
     /**
-     * 拦截捕捉自定义异常 ApiException
+     * 拦截捕捉自定义接口异常 ApiException
      * @param ex
      * @return
      */
     @ResponseBody
     @ExceptionHandler(value = ApiException.class)
-    public Result ApiErrorHandler(ApiException ex) {
+    public Result apiErrorHandler(ApiException ex) {
 
         logger.error(ex.getMsg(), ex);
 
         return ResultGenerator.genFailResult(ex.getMsg(),"",ex.getCode());
     }
+
+
+
+    /**
+     * 捕捉自定义的请求参数异常
+     * @param ex
+     * @return
+     */
+    @ResponseBody
+    @ExceptionHandler(value = RequestException.class)
+    public Result requestErrorHandler(RequestException ex) {
+
+        String msg= String.format("接口报错，请求参数异常:%s ", ex.getMsg());
+
+        logger.error(msg,ex);
+
+        return  ResultGenerator.genFailResult(msg);
+    }
+
+
+
 
 
     /**
@@ -70,7 +92,7 @@ public class ApiControllerAdvice {
 
         logger.error(msg,ex);
 
-        return  ResultGenerator.genFailResult("接口报错",ex.getMessage());
+        return  ResultGenerator.genFailResult(msg);
     }
 
 

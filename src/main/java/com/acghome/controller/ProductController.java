@@ -72,10 +72,10 @@ public class ProductController {
     }
 
     //商品管理
-    @RequestMapping("/Brand_Manage")
+    @RequestMapping("/product_manage")
     public String Brand_Manage(Model model) {
         model.addAttribute("user",UserContext.getUser());
-        return "system/Brand_Manage";
+        return "system/Product_Manage";
     }
 
 

@@ -11,15 +11,6 @@ public class RequestException extends RuntimeException {
 
     private String code;
     private String msg;
-    private Boolean success=Boolean.FALSE;
-
-    public Boolean getSuccess() {
-        return success;
-    }
-
-    public void setSuccess(Boolean success) {
-        this.success = success;
-    }
 
 
     public RequestException() {

@@ -79,7 +79,7 @@
         debugger;
         $('#tb_content').bootstrapTable({
             url: '/product/manage_list',         //请求后台的URL（*）
-            method: 'get',                      //请求方式（*）
+            method: 'post',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
             cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -88,14 +88,14 @@
             sortOrder: "asc",                   //排序方式
             queryParams:  function (params) {
                 var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-                    limit: params.limit,   //页面大小
-                    offset: params.offset , //页码
+                    pageSize: params.limit,   //页面大小
+                    pageNo: params.offset , //页码
                 };
                 return temp;
             },
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
-            pageNumber: 1,                       //初始化加载第一页，默认第一页
-            pageSize: 5,                       //每页的记录行数（*）
+            pageNumber: 2,                       //初始化加载第一页，默认第一页
+            pageSize: 10,                       //每页的记录行数（*）
             pageList: [],        //可供选择的每页的行数（*）
             search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
             strictSearch: true,
@@ -114,28 +114,41 @@
                 formatter: function (value, row, index) {
                     return index+1;
                 }
+            },
+            {
+                field: 'productId',
+                width:200,
+                align: 'center',
+                title: '产品id'
             },{
                 field: 'productName',
                 width:200,
                 align: 'center',
-                title: '商品名称'
+                title: '产品名称'
             }, {
-                field: 'personName',
+                field: 'brandName',
                 width:100,
                 align: 'center',
                 title: '品牌名称'
-            },{
+            },
+            {
                 field: 'price',
                 width:500,
                 align: 'center',
                 title: '商品销售价格'
-            }, {
-                field: 'indate',
-                width:150,
+            },{
+                field: 'originalPrice',
+                width:500,
                 align: 'center',
-                title: '商品录入时间'
-
-            }, {
+                title: '商品市场原价'
+            },
+            {
+                field: 'status',
+                width:500,
+                align: 'center',
+                title: '产品状态'
+            },
+                {
                 field: 'operate',
                 title: '操作',
                 align: 'center',
