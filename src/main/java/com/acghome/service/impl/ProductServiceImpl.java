@@ -259,7 +259,11 @@ public class ProductServiceImpl implements IProductService {
 
         List<ProductAndSkuDTO> DTO_list = new ArrayList<>();
 
-        List<ProductAndSkuDO> productAndSkuDO_list = getProductDetailMapper.selectProductAndSku(offset,limit);
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("offset",offset);
+        map.put("limit",limit);
+
+        List<ProductAndSkuDO> productAndSkuDO_list = getProductDetailMapper.selectProductAndSku(map);
 
         for (ProductAndSkuDO productAndSkuDO : productAndSkuDO_list){
 
@@ -269,7 +273,7 @@ public class ProductServiceImpl implements IProductService {
 
             BeanUtils.copyProperties(product,dto);
 
-            List<ProductAndSkuDTO.SkuBean> skus = dto.getSkus();
+            List<ProductAndSkuDTO.SkuBean> skus = new ArrayList<>();
 
             for(Product_sku sku: sku_list){
                 ProductAndSkuDTO.SkuBean skuBean = new ProductAndSkuDTO.SkuBean();

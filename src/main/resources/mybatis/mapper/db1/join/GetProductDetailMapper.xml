@@ -107,16 +107,16 @@
 
 
 
-    <select id="selectProductAndSku" resultMap="ProductAndSkuDO" >
+    <select id="selectProductAndSku" resultMap="ProductAndSkuDO" parameterType="java.util.Map" >
     select
         p.product_id, p.product_core, p.product_name, p.bar_code, p.brand_name, p.one_category_id,p.two_category_id,
         p.three_category_id,p.price,p.original_price,p.status,p.production_date,p.shelf_life,p.indate,p.modified_time,
         sku.id as sku_id,sku.product_id as sku_product_id,sku.sku_code,sku.price as sku_price,sku.average,sku.stock,
         sku.low_stock,sku.sp1,sku.sp2,sku.sp3,sku.sale,sku.lock_stock
     from product as p
-    LEFT JOIN product_sku  as sku on product.product_id=sku.product_id
+    LEFT JOIN product_sku  as sku on p.product_id=sku.product_id
     ORDER BY FIELD(p.status,0,1),p.modified_time desc
-    limit #{0},#{1}
+    limit #{offset},#{limit}
   </select>
     <resultMap id="ProductAndSkuDO" type="com.acghome.pojo.DO.ProductAndSkuDO" >
         <id column="id" />

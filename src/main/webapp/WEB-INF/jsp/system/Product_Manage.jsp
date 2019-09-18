@@ -89,12 +89,12 @@
             queryParams:  function (params) {
                 var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
                     pageSize: params.limit,   //页面大小
-                    pageNo: params.offset , //页码
+                    pageNo: Math.ceil(params.offset/params.limit) , //页码
                 };
                 return temp;
             },
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
-            pageNumber: 2,                       //初始化加载第一页，默认第一页
+            pageNumber: 1,                       //初始化加载第一页，默认第一页
             pageSize: 10,                       //每页的记录行数（*）
             pageList: [],        //可供选择的每页的行数（*）
             search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大

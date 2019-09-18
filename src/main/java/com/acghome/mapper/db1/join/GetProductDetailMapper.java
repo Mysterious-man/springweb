@@ -6,6 +6,7 @@ import com.acghome.pojo.DO.SkuDetailDO;
 
 
 import java.util.List;
+import java.util.Map;
 
 public interface GetProductDetailMapper {
 
@@ -19,7 +20,7 @@ public interface GetProductDetailMapper {
 
 
     //查询product表和sku表的分页，有排序
-    List<ProductAndSkuDO> selectProductAndSku(int offset, int limit);
+    List<ProductAndSkuDO> selectProductAndSku(Map map);
 
 
 }
