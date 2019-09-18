@@ -281,7 +281,7 @@
             id:35,
             pid:2,
             icon:'fa fa-angle-double-right',
-            url:'/product/Brand_Manage',
+            url:'/product/product_manage',
             name:'商品管理',
 
         },
