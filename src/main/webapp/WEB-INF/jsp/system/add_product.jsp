@@ -6,8 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -20,7 +19,7 @@
     <script src="${pageContext.request.contextPath}/resources/system/js/Sellerber.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/jquery.dataTables.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/jquery.dataTables.bootstrap.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/system/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/resources/system/js/jquery.nicescroll.js"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/layer/layer.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/laydate/laydate.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/hsCheckData.js" type="text/javascript"></script>
@@ -33,7 +32,7 @@
     <title>添加产品</title>
 </head>
 
-<body>
+ <body style="overflow-y: scroll;max-height: 500px">
 <div class="margin inside_pages clearfix">
     <div class="add_style clearfix relative">
         <!--品牌展示 当通过品牌管理添加产品是显示该-->
@@ -131,11 +130,8 @@
                 <button type="button" class="add_Upload bg-deep-blue" id="add_Upload" onclick="add_Upload()"><i class="fa  fa-plus"></i></button>
             </div>
         </li>
-
         <div class="Button_operation btn_width">
             <button class="btn button_btn bg-deep-blue" type="button" id="submit">保存并提交</button>
-            <%--  <button class="btn button_btn bg-orange" type="button">保存草稿</button>
-              <button class="btn button_btn bg-gray" type="button">取消添加</button>--%>
         </div>
     </div>
 </div>
@@ -455,13 +451,5 @@
     };
     laydate(start);
     laydate(end);
-    /*********滚动事件*********/
-    $("body").niceScroll({
-        cursorcolor:"#888888",
-        cursoropacitymax:1,
-        touchbehavior:false,
-        cursorwidth:"5px",
-        cursorborder:"0",
-        cursorborderradius:"5px"
-    });
+
 </script>

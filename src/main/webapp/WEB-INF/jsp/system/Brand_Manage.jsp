@@ -6,8 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -15,6 +15,8 @@
     <link href="${pageContext.request.contextPath}/resources/system/css/Sellerber.css" type="text/css"  rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resources/system/css/bkg_ui.css" type="text/css"  rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resources/system/font/css/font-awesome.min.css"  rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstraptable.min.css">
     <script src="${pageContext.request.contextPath}/resources/system/js/jquery-1.9.1.min.js" type="text/javascript" ></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/system/js/jquery.cookie.js"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/shopFrame.js" type="text/javascript"></script>
@@ -23,6 +25,9 @@
     <script src="${pageContext.request.contextPath}/resources/system/js/laydate/laydate.js" type="text/javascript"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/system/js/proTree.js" ></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/dist/echarts.js" type="text/javascript"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap-table-zh-CN.min.js"></script>
     <!--[if lt IE 9]>
     <script src="${pageContext.request.contextPath}/resources/system/js/html5shiv.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/respond.min.js"></script>
@@ -35,14 +40,13 @@
 <div class="margin" id="page_style">
     <div class="operation clearfix mb15 same_module">
         <ul class="choice_search">
-            <li class="clearfix col-xs-2 col-lg-3 col-ms-3 "><label class="label_name ">品牌名称：</label>
-                <input placeholder="输入品牌名称"  name="" type="text" class="form-control col-xs-8 col-lg-8 col-ms-8">
+            <li class="clearfix col-xs-2 col-lg-3 col-ms-3 "><label class="label_name "  style="max-width: 20%">品牌名称：</label>
+                <input style="width: 70%;" placeholder="输入品牌名称"  name="" type="text" class="form-control col-xs-8 col-lg-8 col-ms-8">
             </li>
-            <li class="clearfix col-xs-2 col-lg-3 col-ms-3"><label class="label_name ">添加时间：</label>
-                <input class="inline laydate-icon form-control Select_Date" id="start">
+            <li style="max-width: 20%" class="clearfix col-xs-2 col-lg-3 col-ms-3"><label class="label_name ">添加时间：</label>
+                <input style="width: 70%;" class="inline laydate-icon form-control Select_Date" id="start">
             </li>
             <li class="clearfix col-xs-2 col-lg-3 col-ms-3 ">
-                <select name="" class="margin-right l_f select_style"><option  value="1">国内品牌</option><option value="2">国外品牌</option></select>
                 <button type="button" class="btn button_btn bg-deep-blue "><i class="icon-search"></i>查询</button></li>
         </ul>
     </div>
@@ -57,11 +61,10 @@
         <a href="javascript:ovid()" class="btn  button_btn btn-info">国内品牌</a>
         <a href="javascript:ovid()" class="btn button_btn btn-Dark-success">国外品牌</a>
        </span>
-                <span class="r_f">共：<b>234</b>个品牌</span>
             </div>
             <div class=" datalist_show">
                 <div class="datatable_height confirm">
-                    <table class="table table_list table_striped table-bordered" id="sample-table">
+                    <table class="table table_list table_striped table-bordered" id="tb_content">
                         <thead>
                         <tr>
                             <th width="25px"><label><input type="checkbox" class="ace"><span class="lbl"></span></label></th>
@@ -145,57 +148,6 @@
                                 <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-delete" >删除</a>
                             </td>
                         </tr>
-                        <tr>
-                            <td><label><input type="checkbox" class="ace" ><span class="lbl"></span></label></td>
-                            <td>2045</td>
-                            <td><input type="text" class="input-text text-c" value="2" style="width:60px"></td>
-                            <td><img src="${pageContext.request.contextPath}/resources/system/product_img/logo/152.jpg"  width="130"/></td>
-                            <td><u style="cursor:pointer" class="text-primary brond_name" onclick="member_show('张三','member-show.html','10001','360','400')">丝塔芙</u></td>
-                            <td>法国</td>
-
-                            <td>123</td>
-                            <td>2014-6-11 11:11:42</td>
-                            <td class="td-status"><span class="label label-success radius">已启用</span></td>
-                            <td class="td-manage">
-                                <a onClick="member_stop(this,'10001')"  href="javascript:;" title="下架"  class="btn btn-xs btn-status">下架</a>
-                                <a title="编辑" onclick="member_edit('编辑','member-add.html','4','','510')" href="javascript:;"  class="btn btn-xs btn-info" >编辑</a>
-                                <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-delete" >删除</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label><input type="checkbox" class="ace" ><span class="lbl"></span></label></td>
-                            <td>2045</td>
-                            <td><input type="text" class="input-text text-c" value="2" style="width:60px"></td>
-                            <td><img src="${pageContext.request.contextPath}/resources/system/product_img/logo/42.jpg"  width="130"/></td>
-                            <td><u style="cursor:pointer" class="text-primary brond_name" onclick="member_show('张三','member-show.html','10001','360','400')">比克度</u></td>
-                            <td>法国</td>
-
-                            <td>123</td>
-                            <td>2014-6-11 11:11:42</td>
-                            <td class="td-status"><span class="label label-success radius">已启用</span></td>
-                            <td class="td-manage">
-                                <a onClick="member_stop(this,'10001')"  href="javascript:;" title="下架"  class="btn btn-xs btn-status">下架</a>
-                                <a title="编辑" onclick="member_edit('编辑','member-add.html','4','','510')" href="javascript:;"  class="btn btn-xs btn-info" >编辑</a>
-                                <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-delete" >删除</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label><input type="checkbox" class="ace" ><span class="lbl"></span></label></td>
-                            <td>2045</td>
-                            <td><input type="text" class="input-text text-c" value="2" style="width:60px"></td>
-                            <td><img src="${pageContext.request.contextPath}/resources/system/product_img/logo/42.jpg"  width="130"/></td>
-                            <td><u style="cursor:pointer" class="text-primary brond_name" onclick="member_show('张三','member-show.html','10001','360','400')">比克度</u></td>
-                            <td>法国</td>
-
-                            <td>123</td>
-                            <td>2014-6-11 11:11:42</td>
-                            <td class="td-status"><span class="label label-success radius">已启用</span></td>
-                            <td class="td-manage">
-                                <a onClick="member_stop(this,'10001')"  href="javascript:;" title="下架"  class="btn btn-xs btn-status">下架</a>
-                                <a title="编辑" onclick="member_edit('编辑','member-add.html','4','','510')" href="javascript:;"  class="btn btn-xs btn-info" >编辑</a>
-                                <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-delete" >删除</a>
-                            </td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -205,132 +157,91 @@
 </div>
 </body>
 </html>
-<script>
-    //设置内页框架布局
-    $(function() {
-        $("#Sellerber").frame({
-            float : 'left',
-            color_btn:'.skin_select',
-            Sellerber_menu:'.list_content',
-            page_content:'.list_show',//内容
-            datalist:".datatable_height",//数据列表高度取值
-            header:65,//顶部高度
-            mwidth:350,//宽度自定义
-            minStatue:true,
 
-        });
-    });
-    function generateOrders(id){
-        window.location.href = "Brand_detailed.html?="+id;
-    };
-    /*品牌-查看*/
-    function member_show(title,url,id,w,h){
-        layer_show(title,url,w,h);
-    }
-    /*品牌-停用*/
-    /*产品-停用*/
-    function member_stop(obj,id){
-        layer.confirm('确认要下架该品牌吗？该品牌下的所有产品将全部下架。',function(index){
-            $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs " onClick="member_start(this,id)" href="javascript:;" title="上架">上架</a>');
-            $(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
-            $(obj).remove();
-            layer.msg('已下架!',{icon: 5,time:1000});
-        });
-    }
-    /*产品-启用*/
-    function member_start(obj,id){
-        layer.confirm('确认要上架改该品牌吗？',function(index){
-            $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs btn-status" onClick="member_stop(this,id)" href="javascript:;" title="下架">下架</a>');
-            $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已上架</span>');
-            $(obj).remove();
-            layer.msg('已上架!',{icon: 6,time:1000});
-        });
-    }
-    /*产品-编辑*/
-    function member_edit(title,url,id,w,h){
-        layer_show(title,url,w,h);
-    }
-    /*产品-删除*/
-    function member_del(obj,id){
-        layer.confirm('确认要删除吗？',function(index){
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!',{icon:1,time:1000});
-        });
-    }
-    //设置时间
-    laydate({
-        elem: '#start',
-        event: 'focus'
-    });
-</script>
 <script type="text/javascript">
-    require.config({
-        paths: {
-            echarts: '${pageContext.request.contextPath}/resources/system/js/dist'
-        }
-    });
-    require(
-        [
-            'echarts',
-            'echarts/chart/pie',   // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
-            'echarts/chart/funnel'
-        ],
-        function (ec) {
-            var myChart = ec.init(document.getElementById('main'));
+    function tbInit() {
+        $('#tb_content').bootstrapTable({
+            url: baseUrl+'/getListData',         //请求后台的URL（*）
+            method: 'get',                      //请求方式（*）
+            toolbar: '#toolbar',                //工具按钮用哪个容器
+            striped: true,                      //是否显示行间隔色
+            cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            pagination: true,                   //是否显示分页（*）
+            sortable: false,                     //是否启用排序
+            sortOrder: "asc",                   //排序方式
+            queryParams:  function (params) {
+                var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                    limit: params.limit,   //页面大小
+                    offset: params.offset , //页码
+                };
+                return temp;
+            },
+            sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+            pageNumber: 1,                       //初始化加载第一页，默认第一页
+            pageSize: 5,                       //每页的记录行数（*）
+            pageList: [],        //可供选择的每页的行数（*）
+            search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+            strictSearch: true,
+            showColumns: false,                  //是否显示所有的列
+            showRefresh: false,                  //是否显示刷新按钮
+            minimumCountColumns: 2,             //最少允许的列数
+            clickToSelect: true,                //是否启用点击选中行
+            uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+            showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
+            cardView: false,                    //是否显示详细视图
+            detailView: false,                   //是否显示父子表
+            columns: [{
+                title: '序号',
+                width:40,
+                align: 'center',
+                formatter: function (value, row, index) {
+                    return index+1;
+                }
+            },{
+                field: 'orgName',
+                width:200,
+                align: 'center',
+                title: '公司名称'
+            }, {
+                field: 'personName',
+                width:100,
+                align: 'center',
+                title: '谈话人员'
+            },{
+                field: 'dzzPartyName',
+                width:500,
+                align: 'center',
+                title: '党组织'
+            }, {
+                field: 'type',
+                width:150,
+                align: 'center',
+                title: '谈话类型'
 
-            option = {
-                title : {
-                    text: '国内国外品牌比例',
-                    subtext: '',
-                    x:'center'
-                },
-                tooltip : {
-                    trigger: 'item',
-                    formatter: "{a} <br/>{b} : {c} ({d}%)"
-                },
-                legend: {
-                    y : 'bottom',
-                    x:'center',
-                    bottom:30,
-                    data:['国内品牌','国外品牌']
-                },
-                toolbox: {
-                    show : false,
-                    feature : {
-                        mark : {show: false},
-                        dataView : {show: false, readOnly: false},
-                        magicType : {
-                            show: true,
-                            type: ['pie', 'funnel'],
-                            option: {
-                                funnel: {
-                                    x: '25%',
-                                    width: '50%',
-                                    funnelAlign: 'left',
-                                    max: 545
-                                }
-                            }
-                        },
-                        restore : {show: true},
-                        saveAsImage : {show: true}
-                    }
-                },
-                calculable : true,
-                series : [
-                    {
-                        name:'品牌数量',
-                        type:'pie',
-                        radius : '45%',
-                        center: ['50%', '50%'],
-                        data:[
-                            {value:335, name:'国内品牌'},
-                            {value:210, name:'国外品牌'},
+            },{
+                field: 'talkTheme',
+                width:150,
+                align: 'center',
+                title: '谈话主题'
+            }, {
+                field: 'operate',
+                title: '操作',
+                align: 'center',
+                width : 220,
+                // events: operateEvents,
+                formatter: operateFormatter
+            }]
+        });
 
-                        ]
-                    }
-                ]
-            };
-            myChart.setOption(option);
+        function operateFormatter(value, row, index) {
+                return [
+                    '<button type="button" class="detail btn btn-primary btn-sm">修改</button>&nbsp;&nbsp;',
+                    '<button type="button" class="del btn btn-primary  btn-sm" >删除</button>'
+                ].join('');
+
         }
-    );
+
+
+    }
+
 </script>
