@@ -56,7 +56,7 @@
         <div class="list_Exhibition list_show padding15">
             <div class="operation clearfix mb15  same_module">
        <span class="l_f">
-        <a href="Add_Brand.html"  title="添加品牌" class="btn button_btn bg-deep-blue"><i class="fa fa-plus"></i>添加商品</a>
+        <a href="/product/add_product"  title="添加品牌" class="btn button_btn bg-deep-blue"><i class="fa fa-plus"></i>添加商品</a>
         <a href="javascript:ovid()" class="btn  button_btn btn-danger"><i class="fa fa-trash"></i>批量删除</a>
         <a href="javascript:ovid()" class="btn  button_btn btn-info">国内品牌</a>
         <a href="javascript:ovid()" class="btn button_btn btn-Dark-success">国外品牌</a>
@@ -64,91 +64,7 @@
             </div>
             <div class=" datalist_show">
                 <div class="datatable_height confirm">
-                    <table class="table table_list table_striped table-bordered" id="tb_content">
-                        <thead>
-                        <tr>
-                            <th width="25px"><label><input type="checkbox" class="ace"><span class="lbl"></span></label></th>
-                            <th width="80px">ID</th>
-                            <th width="50px">排序</th>
-                            <th width="120px">品牌LOGO</th>
-                            <th width="120px">品牌名称</th>
-                            <th width="130px">所属地区/国家</th>
-                            <th width="150px">数量</th>
-                            <th width="180px">加入时间</th>
-                            <th width="70px">状态</th>
-                            <th width="200px">操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td width="25px"><label><input type="checkbox" class="ace" ><span class="lbl"></span></label></td>
-                            <td width="80px">45631</td>
-                            <td width="50px"><input type="text" class="input-text text-c" value="1" style="width:60px"></td>
-                            <td><img src="${pageContext.request.contextPath}/resources/system/product_img/logo/156.jpg"  width="130"/></td>
-                            <td><a href="javascript:ovid()" name="Brand_detailed.html" style="cursor:pointer" class="text-primary brond_name" onclick="generateOrders('561');" title="玉兰油OLAY">玉兰油OLAY</a></td>
-                            <td>法国</td>
-
-                            <td>123</td>
-                            <td>2014-6-11 11:11:42</td>
-                            <td class="td-status"><span class="label label-success radius">已启用</span></td>
-                            <td class="td-manage">
-                                <a onClick="member_stop(this,'10001')"  href="javascript:;" title="下架"  class="btn btn-xs btn-status">下架</a>
-                                <a title="编辑" onclick="member_edit('编辑','member-add.html','4','','510')" href="javascript:;"  class="btn btn-xs btn-info" >编辑</a>
-                                <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-delete" >删除</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label><input type="checkbox" class="ace" ><span class="lbl"></span></label></td>
-                            <td>2045</td>
-                            <td><input type="text" class="input-text text-c" value="2" style="width:60px"></td>
-                            <td><img src="${pageContext.request.contextPath}/resources/system/product_img/logo/34.jpg"  width="130"/></td>
-                            <td><u style="cursor:pointer" class="text-primary brond_name" onclick="generateOrders('5621');" title="玉兰油OLAY">玉兰油OLAY</u></td>
-                            <td>法国</td>
-
-                            <td>123</td>
-                            <td>2014-6-11 11:11:42</td>
-                            <td class="td-status"><span class="label label-success radius">已启用</span></td>
-                            <td class="td-manage">
-                                <a onClick="member_stop(this,'10001')"  href="javascript:;" title="下架"  class="btn btn-xs btn-status">下架</a>
-                                <a title="编辑" onclick="member_edit('编辑','member-add.html','4','','510')" href="javascript:;"  class="btn btn-xs btn-info" >编辑</a>
-                                <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-delete" >删除</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label><input type="checkbox" class="ace" ><span class="lbl"></span></label></td>
-                            <td>2045</td>
-                            <td><input type="text" class="input-text text-c" value="2" style="width:60px"></td>
-                            <td><img src="${pageContext.request.contextPath}/resources/system/product_img/logo/245.jpg"  width="130"/></td>
-                            <td><u style="cursor:pointer" class="text-primary brond_name" onclick="generateOrders('461');" title="御泥坊">御泥坊</u></td>
-                            <td>法国</td>
-
-                            <td>123</td>
-                            <td>2014-6-11 11:11:42</td>
-                            <td class="td-status"><span class="label label-success radius">已启用</span></td>
-                            <td class="td-manage">
-                                <a onClick="member_stop(this,'10001')"  href="javascript:;" title="下架"  class="btn btn-xs btn-status">下架</a>
-                                <a title="编辑" onclick="member_edit('编辑','member-add.html','4','','510')" href="javascript:;"  class="btn btn-xs btn-info" >编辑</a>
-                                <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-delete" >删除</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label><input type="checkbox" class="ace" ><span class="lbl"></span></label></td>
-                            <td>2045</td>
-                            <td><input type="text" class="input-text text-c" value="2" style="width:60px"></td>
-                            <td><img src="${pageContext.request.contextPath}/resources/system/product_img/logo/199.jpg"  width="130"/></td>
-                            <td><u style="cursor:pointer" class="text-primary brond_name" onclick="member_show('张三','member-show.html','10001','360','400')">薇姿</u></td>
-                            <td>法国</td>
-
-                            <td>123</td>
-                            <td>2014-6-11 11:11:42</td>
-                            <td class="td-status"><span class="label label-success radius">已启用</span></td>
-                            <td class="td-manage">
-                                <a onClick="member_stop(this,'10001')"  href="javascript:;" title="下架"  class="btn btn-xs btn-status">下架</a>
-                                <a title="编辑" onclick="member_edit('编辑','member-add.html','4','','510')" href="javascript:;"  class="btn btn-xs btn-info" >编辑</a>
-                                <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-delete" >删除</a>
-                            </td>
-                        </tr>
-                        </tbody>
+                    <table id="tb_content" class="table table_list table_striped table-bordered">
                     </table>
                 </div>
             </div>
@@ -160,8 +76,9 @@
 
 <script type="text/javascript">
     function tbInit() {
+        debugger;
         $('#tb_content').bootstrapTable({
-            url: baseUrl+'/getListData',         //请求后台的URL（*）
+            url: '/product/manage_list',         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -198,31 +115,26 @@
                     return index+1;
                 }
             },{
-                field: 'orgName',
+                field: 'productName',
                 width:200,
                 align: 'center',
-                title: '公司名称'
+                title: '商品名称'
             }, {
                 field: 'personName',
                 width:100,
                 align: 'center',
-                title: '谈话人员'
+                title: '品牌名称'
             },{
-                field: 'dzzPartyName',
+                field: 'price',
                 width:500,
                 align: 'center',
-                title: '党组织'
+                title: '商品销售价格'
             }, {
-                field: 'type',
+                field: 'indate',
                 width:150,
                 align: 'center',
-                title: '谈话类型'
+                title: '商品录入时间'
 
-            },{
-                field: 'talkTheme',
-                width:150,
-                align: 'center',
-                title: '谈话主题'
             }, {
                 field: 'operate',
                 title: '操作',
@@ -244,4 +156,7 @@
 
     }
 
+    $(function () {
+        tbInit();
+    })
 </script>
