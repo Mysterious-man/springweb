@@ -78,7 +78,7 @@ public class Consumer {
             }
             else {
                 String redis_key= (String) data.get("redis_key");
-                logger.info(redis_key);
+
                 redisTemplate.opsForValue().set(redis_key,result_data);
                 logger.info(String.format("更新缓存%s成功，",redis_key));
             }

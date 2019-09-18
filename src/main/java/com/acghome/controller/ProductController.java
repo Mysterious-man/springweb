@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import static com.acghome.conf.Constant.PRODUCT_KEY_1;
+
 
 @Controller
 @RequestMapping("/product")
@@ -96,7 +98,7 @@ public class ProductController {
 
         //更新产品和sku后，同时通过消息队列更新缓存
         String product_id= String.valueOf(productUpdateDTO.getProduct().getProductId());
-        String product_key="GetProductAndSkuEdit_product_id_"+ product_id;
+        String product_key=PRODUCT_KEY_1+ product_id;
         producer.productChangeSend(product_key,product_id);
 
         return ResultGenerator.genSuccessResult(result_data);
@@ -108,7 +110,7 @@ public class ProductController {
     public Result GetProductAndSkuEdit(@RequestBody Map<String,Object> request_data) {
 
         Integer product_id= (int) request_data.get("product_id");
-        String product_key="GetProductAndSkuEdit_product_id_"+product_id.toString();
+        String product_key=PRODUCT_KEY_1+product_id.toString();
 
         Object productAndSkuInfo = redisTemplate.opsForValue().get(product_key);
 
@@ -123,6 +125,7 @@ public class ProductController {
 
         } else {
 
+            logger.info("没有缓存，设置该缓存 product_key"+product_key);
             GetProductEditDTO result_data = productService.getProductAndSku(product_id);
 
             if (result_data.getProduct() == null) {
