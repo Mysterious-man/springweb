@@ -19,7 +19,7 @@ public class WebLogAspect {
 
     private final static Logger logger = LoggerFactory.getLogger(WebLogAspect.class);
 
-    /** 以 controller 包下定义的所有请求为切入点 */
+    /** 以 controller 包下定义的所有请求为切入点，必须是Servlet请求的 */
     @Pointcut("execution(* com.acghome.controller..*.*(..))")
     public void webLog() {}
 
@@ -82,7 +82,7 @@ public class WebLogAspect {
         try {
             result_info = mapper.writeValueAsString(result);
         } catch (JsonProcessingException e) {
-            logger.info("Response Args   : 因jackson序列化请求参数时抛出异常，返回参数获取失败");
+            logger.info("Response Args   : jackson无法序列化请求参数，返回参数不显示");
         }
         logger.info("Response Args  : {}",result_info );
         // 执行耗时

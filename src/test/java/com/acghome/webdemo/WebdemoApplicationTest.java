@@ -1,6 +1,7 @@
 package com.acghome.webdemo;
-import com.acghome.controller.mq.Producer;
+
 import com.acghome.service.IProductService;
+import com.acghome.service.mq.Producer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,15 @@ public class WebdemoApplicationTest {
     @Test
     public void testStringSend() {
 
-//        Integer product_id=5;
-//        String product_key="GetProductAndSkuEdit_product_id_"+product_id.toString();
-//
-//        producer.productChangeSend(product_key,product_id);
+        for (int i = 0; i <5; i++) {
+            String  product_id=String.valueOf(5);
+            String product_key="GetProductAndSkuEdit_product_id_"+ product_id;
+
+            producer.productChangeSend(product_key,product_id);
+
+        }
+
+
     }
 
 

@@ -10,11 +10,11 @@ public interface GetProductDetailMapper {
 
 
     //查询product表和product_attribute表和product_pic_info表
-    ProductDetail selectProductDetail(Integer productId);
+    public ProductDetail selectProductDetail(Integer productId);
 
 
     //查询product_sku表和sku_attribute表和sku_id对应的product_pic_infos表内容
-    List<SkuDetail> selectSkusDetail(Integer productId);
+    public List<SkuDetail> selectSkusDetail(Integer productId);
 
 
 }

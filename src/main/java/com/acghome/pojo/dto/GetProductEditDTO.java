@@ -42,5 +42,13 @@ public class GetProductEditDTO implements Serializable {
     public void setSkus(List<SkuDetail> skus) {
         this.skus = skus;
     }
+
+    @Override
+    public String toString() {
+        return "GetProductEditDTO{" +
+                "product=" + product +
+                ", skus=" + skus +
+                '}';
+    }
 }
 

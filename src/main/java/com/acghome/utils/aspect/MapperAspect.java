@@ -25,12 +25,12 @@ public class MapperAspect {
     /**
      * 监控包及其子包的所有public方法
      */
-    @Pointcut("execution(* com.acghome.mapper.*.*Mapper.*(..))")
+    @Pointcut("execution(* com.acghome.mapper.*.*Mapper.*(..))||execution(* com.acghome.mapper.*.*.*Mapper.*(..))")
     private void pointCutMethod() {
     }
 
 
-    @AfterReturning("execution(* com.acghome.mapper.*.*Mapper.*(..))")
+    @AfterReturning("pointCutMethod()")
     public void logServiceAccess(JoinPoint joinPoint) {
         logger.info("Completed: " + joinPoint);
     }

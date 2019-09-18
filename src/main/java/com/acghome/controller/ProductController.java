@@ -5,6 +5,7 @@ package com.acghome.controller;
 import com.acghome.pojo.dto.GetProductEditDTO;
 import com.acghome.pojo.dto.ProductAddDTO;
 import com.acghome.service.*;
+import com.acghome.service.mq.Producer;
 import com.acghome.utils.ApiValidator;
 import com.acghome.pojo.dto.ProductUpdateDTO;
 import com.acghome.utils.Result;
@@ -28,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/product")
 public class ProductController {
 
-    private final static Logger logger = LoggerFactory.getLogger(FileController.class);
+    private final static Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
     private RedisTemplate<Object, Object> redisTemplate;
@@ -38,16 +39,9 @@ public class ProductController {
     private IProductService productService;
 
     @Autowired
-    private IProduct_attributeService product_attributeService;
+    Producer producer;
 
-    @Autowired
-    private IProduct_pic_infoService product_pic_infoService;
 
-    @Autowired
-    private IProduct_skuService product_skuService;
-
-    @Autowired
-    private ISku_attributeService sku_attributeService;
 
 
     //商品页
@@ -99,6 +93,12 @@ public class ProductController {
 
         Object result_data=productService.updateProductAndSku(productUpdateDTO);
 
+
+        //更新产品和sku后，同时通过消息队列更新缓存
+        String product_id= String.valueOf(productUpdateDTO.getProduct().getProductId());
+        String product_key="GetProductAndSkuEdit_product_id_"+ product_id;
+        producer.productChangeSend(product_key,product_id);
+
         return ResultGenerator.genSuccessResult(result_data);
 
     }
@@ -112,7 +112,7 @@ public class ProductController {
 
         Object productAndSkuInfo = redisTemplate.opsForValue().get(product_key);
 
-
+        //为防止redis击穿， product_id数据库查不到时，redis存生命周期很短的key,值为空字符串
         if (productAndSkuInfo!=null) {
 
                 if (productAndSkuInfo.getClass().isInstance("") && (String)productAndSkuInfo==""){
@@ -137,7 +137,6 @@ public class ProductController {
             return ResultGenerator.genSuccessResult(result_data);
 
         }
-
 
 
     }

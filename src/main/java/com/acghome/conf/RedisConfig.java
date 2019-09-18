@@ -24,7 +24,7 @@ import java.time.Duration;
  * @author tmh
  * @version 1.0.0
  * @ClassName RedisConfig.java
- * @Description TODO
+ * @Description RedisConfig
  * @createTime 2019年09月16日 14:02:00
  */
 

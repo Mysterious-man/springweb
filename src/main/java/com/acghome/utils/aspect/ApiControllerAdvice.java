@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 public class ApiControllerAdvice {
 
-    private final static Logger logger = LoggerFactory.getLogger(WebLogAspect.class);
+    private final static Logger logger = LoggerFactory.getLogger(ApiControllerAdvice.class);
 
 
     /**

@@ -75,7 +75,7 @@ public class ProductAddDTO implements Serializable {
 
     public static class SkuBean {
 
-
+        @NotNull
         private String skuCode;
 
         private BigDecimal price;
@@ -90,7 +90,7 @@ public class ProductAddDTO implements Serializable {
 
         private Integer lockStock;
 
-        @NotNull
+
         private ProductPicInfoBean sku_pic_info;
 
         @NotNull

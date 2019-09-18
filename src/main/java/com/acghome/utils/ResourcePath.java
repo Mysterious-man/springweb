@@ -11,7 +11,7 @@ import java.nio.file.Paths;
  * @author tmh
  * @version 1.0.0
  * @ClassName ResourcePath.java
- * @Description TODO
+ * @Description 用于资源文件和根目录的路径访问
  * @createTime 2019年09月14日 23:39:00
  */
 public class ResourcePath {

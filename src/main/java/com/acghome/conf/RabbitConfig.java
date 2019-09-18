@@ -4,7 +4,7 @@ package com.acghome.conf;
  * @author tmh
  * @version 1.0.0
  * @ClassName RabbitConfig.java
- * @Description TODO
+ * @Description Rabbitmq配置
  * @createTime 2019年09月16日 18:10:00
  */
 
@@ -29,7 +29,8 @@ public class RabbitConfig {
     /**
      * 定义队列名
      */
-    public final static String STRING = "string";
+    //用于产品和sku信息变更时发送消息
+    public final static String PRODUCT_INFO_1 = "ProductAndSkuEditInfo";
 
 
 
@@ -38,15 +39,11 @@ public class RabbitConfig {
      *
      * @return
      */
-    @Bean
-    public Queue string() {
-        return new Queue(STRING);
+    @Bean(name = PRODUCT_INFO_1)
+    public Queue queue1() {
+        return new Queue(PRODUCT_INFO_1);
     }
 
-//    @Bean
-//    public MessageConverter jsonMessageConverter() {
-//        return new Jackson2JsonMessageConverter();
-//    }
 
 
 }
