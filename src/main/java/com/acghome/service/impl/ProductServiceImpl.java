@@ -257,26 +257,37 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public List<ProductAndSkuDTO> getProductAndSkulist(int offset, int limit) {
 
-
-        List<ProductAndSkuDTO> productAndSkuDTO_list = new ArrayList<>();
+        List<ProductAndSkuDTO> DTO_list = new ArrayList<>();
 
         List<ProductAndSkuDO> productAndSkuDO_list = getProductDetailMapper.selectProductAndSku(offset,limit);
 
         for (ProductAndSkuDO productAndSkuDO : productAndSkuDO_list){
 
-
             Product product = productAndSkuDO.getProduct();
-            List<Product_sku> product_sku_list = productAndSkuDO.getProduct_sku_List();
+            List<Product_sku> sku_list = productAndSkuDO.getProduct_sku_List();
+            ProductAndSkuDTO dto = new ProductAndSkuDTO();
 
 
+            ProductAndSkuDTO.ProductBean productBean = dto.getProduct();
+            BeanUtils.copyProperties(product,productBean);
+            dto.setProduct(productBean);
 
 
+            List<ProductAndSkuDTO.SkuBean> skus = dto.getSkus();
+            for(Product_sku sku: sku_list){
+                ProductAndSkuDTO.SkuBean skuBean = new ProductAndSkuDTO.SkuBean();
+                skuBean.setId(sku.getId());
+                skuBean.setPrice(sku.getPrice());
+                skus.add(skuBean);
+            }
 
+            dto.setSkus(skus);
+
+
+            DTO_list.add(dto);
         }
 
+        return DTO_list;
 
-
-
-        return null;
     }
 }
