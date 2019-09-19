@@ -12,48 +12,22 @@ public class BaseQuery {
 
 	private final static Logger logger = LoggerFactory.getLogger(BaseQuery.class);
 
-	private int offset;
-	private int limit;
-	private int pageMaxNo;
 
 
-	public BaseQuery(int pageNo, int pageSize, int total) throws RequestException {
+	public static int getOffset(int pageNo, int pageSize) throws RequestException {
 
 
 
-		if (pageNo <= 0 || pageSize <= 0 || total <= 0) {
+		if (pageNo <= 0 || pageSize <= 0) {
 			throw new RequestException("pageNo或pageSize参数异常");
 		}
-		if (total % pageSize == 0) {
-			pageMaxNo = total / pageSize;
 
-		} else {
-			pageMaxNo = total / pageSize + 1;
-		}
-		if (pageNo > pageMaxNo) {
-			throw new RequestException("pageNo超过可查询范围");
-		}
-		if (pageSize * pageNo <= total) {
-			offset = pageSize * (pageNo - 1);
-			limit = pageSize * pageNo;
-		} else {
-			offset = pageSize * (pageMaxNo - 1);
-			limit = total;
-		}
+		int offset = pageSize * (pageNo - 1);
 
-
-	}
-
-
-	public int getOffset() {
 		return offset;
+
+
 	}
 
-	public int getLimit() {
-		return limit;
-	}
 
-	public int getPageMaxNo() {
-		return pageMaxNo;
-	}
 }

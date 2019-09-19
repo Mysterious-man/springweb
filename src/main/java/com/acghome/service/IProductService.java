@@ -27,7 +27,7 @@ public interface IProductService {
 
     public Map<String, Object> updateProductAndSku(ProductUpdateDTO productUpdateDTO);
 
-    public List<ProductAndSkuDTO> getProductAndSkulist(int offset, int limit);
+    public List<ProductAndSkuDTO> getProductAndSkulist(int offset, int limit,Map query);
 
 
 }

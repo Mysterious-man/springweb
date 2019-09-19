@@ -15,6 +15,7 @@ import com.acghome.pojo.dto.accept.ProductUpdateDTO;
 import com.acghome.utils.Result;
 import com.acghome.utils.ResultGenerator;
 import com.acghome.utils.UserContext;
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -161,23 +162,18 @@ public class ProductController {
      * */
 
     @ResponseBody
-    @RequestMapping(value = "/manage_list",method = RequestMethod.POST )
-    public Map GetManageList(@RequestBody Map<String,Object> request_data) {
-        int pageNo= (int) request_data.get("pageNo");
-        int pageSize= (int) request_data.get("pageSize");
+    @RequestMapping(value = "/manage_list",method = RequestMethod.GET )
+    public Map GetManageList(@Param("offset") int offset,@Param("limit") int limit,@Param("query") Map<String,Object> query) {
+
 
         int total=productMapper.countByExample(new ProductExample());
-        BaseQuery query = new BaseQuery(pageNo,pageSize,total);
 
-
-        List<ProductAndSkuDTO> productAndSkulist = productService.getProductAndSkulist(query.getOffset(), query.getLimit());
-
+        List<ProductAndSkuDTO> productAndSkulist = productService.getProductAndSkulist(offset,limit,query);
 
         HashMap<String, Object> map = new HashMap<>();
 
         map.put("total",total);
         map.put("rows",productAndSkulist);
-        map.put("PageMaxNo",query.getPageMaxNo());
 
         return map;
 

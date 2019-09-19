@@ -255,13 +255,16 @@ public class ProductServiceImpl implements IProductService {
 
 
     @Override
-    public List<ProductAndSkuDTO> getProductAndSkulist(int offset, int limit) {
+    public List<ProductAndSkuDTO> getProductAndSkulist(int offset, int limit,Map query) {
+
 
         List<ProductAndSkuDTO> DTO_list = new ArrayList<>();
 
-        HashMap<String, Integer> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("offset",offset);
         map.put("limit",limit);
+        map.put("query_productName",query.get("productName"));
+
 
         List<ProductAndSkuDO> productAndSkuDO_list = getProductDetailMapper.selectProductAndSku(map);
 

@@ -114,12 +114,22 @@
         sku.id as sku_id,sku.product_id as sku_product_id,sku.sku_code,sku.price as sku_price,sku.average,sku.stock,
         sku.low_stock,sku.sp1,sku.sp2,sku.sp3,sku.sale,sku.lock_stock
     from product as p
-    LEFT JOIN product_sku  as sku on p.product_id=sku.product_id
-    ORDER BY FIELD(p.status,0,1),p.modified_time desc
-    limit #{offset},#{limit}
+    LEFT  JOIN product_sku  as sku on p.product_id=sku.product_id
+    right join (select product_id as product_id from product
+                  <include refid="whereSql"></include>
+                  ORDER BY FIELD(status,0,1),modified_time desc
+                  limit #{offset},#{limit}
+    ) temp on temp.product_id=p.product_id
   </select>
+    <sql id="whereSql">
+        <where>
+            <if test="query_productName!=null and query_productName !='' ">
+                and product_name=#{query_productName}
+            </if>
+        </where>
+    </sql>
     <resultMap id="ProductAndSkuDO" type="com.acghome.pojo.DO.ProductAndSkuDO" >
-        <id column="id" />
+        <id column="product_id" />
         <association property="product" javaType="com.acghome.entity.db1.Product">
             <id column="product_id" property="productId" jdbcType="INTEGER" />
             <result column="product_core" property="productCore" jdbcType="CHAR" />
