@@ -41,13 +41,13 @@
     <div class="operation clearfix mb15 same_module">
         <ul class="choice_search">
             <li class="clearfix col-xs-2 col-lg-3 col-ms-3 "><label class="label_name "  style="max-width: 20%">品牌名称：</label>
-                <input style="width: 70%;" placeholder="输入品牌名称"  name="" type="text" class="form-control col-xs-8 col-lg-8 col-ms-8">
+                <input style="width: 70%;" placeholder="输入品牌名称" id="productName" type="text" class="form-control col-xs-8 col-lg-8 col-ms-8">
             </li>
             <li style="max-width: 20%" class="clearfix col-xs-2 col-lg-3 col-ms-3"><label class="label_name ">添加时间：</label>
                 <input style="width: 70%;" class="inline laydate-icon form-control Select_Date" id="start">
             </li>
             <li class="clearfix col-xs-2 col-lg-3 col-ms-3 ">
-                <button type="button" class="btn button_btn bg-deep-blue "><i class="icon-search"></i>查询</button></li>
+                <button id="queryList" type="button" class="btn button_btn bg-deep-blue "><i class="icon-search"></i>查询</button></li>
         </ul>
     </div>
     <div class="h_products_list clearfix mb15" id="Sellerber">
@@ -76,10 +76,9 @@
 
 <script type="text/javascript">
     function tbInit() {
-        debugger;
         $('#tb_content').bootstrapTable({
-            url: '/product/manage_list',         //请求后台的URL（*）
-            method: 'post',                      //请求方式（*）
+            url: '/product/getDataList',         //请求后台的URL（*）
+            method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
             cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -88,14 +87,15 @@
             sortOrder: "asc",                   //排序方式
             queryParams:  function (params) {
                 var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-                    pageSize: params.limit,   //页面大小
-                    pageNo: Math.ceil(params.offset/params.limit)+1, //页码
+                    limit: params.limit,   //页面大小
+                    offset: params.offset, //页码
+                    productName:$("#productName").val()
                 };
                 return temp;
             },
             sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
             pageNumber: 1,                       //初始化加载第一页，默认第一页
-            pageSize: 10,                       //每页的记录行数（*）
+            pageSize: 5,                       //每页的记录行数（*）
             pageList: [],        //可供选择的每页的行数（*）
             search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
             strictSearch: true,
@@ -171,5 +171,10 @@
 
     $(function () {
         tbInit();
+        $('#queryList').on('click', function(){
+            debugger;
+            $("#tb_content").bootstrapTable('destroy');
+            tbInit();
+        })
     })
 </script>

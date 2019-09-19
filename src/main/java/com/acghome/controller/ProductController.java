@@ -2,8 +2,10 @@ package com.acghome.controller;
 
 
 
+import com.acghome.entity.db1.Product;
 import com.acghome.entity.db1.ProductExample;
 import com.acghome.mapper.db1.ProductMapper;
+import com.acghome.mapper.db1.join.GetProductDetailMapper;
 import com.acghome.pojo.dto.export.GetProductEditDTO;
 import com.acghome.pojo.dto.accept.ProductAddDTO;
 import com.acghome.pojo.dto.export.ProductAndSkuDTO;
@@ -54,7 +56,8 @@ public class ProductController {
     private ProductMapper productMapper;
 
 
-
+    @Autowired
+    private GetProductDetailMapper getProductDetailMapper;
 
     //商品页
     @RequestMapping("/add_product")
@@ -175,6 +178,18 @@ public class ProductController {
         map.put("total",total);
         map.put("rows",productAndSkulist);
 
+        return map;
+
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getDataList")
+    public Map  getDataList(int limit, int offset, Product product) {
+        int total=getProductDetailMapper.loadCountByQuery(product);
+        List<Product> productList = getProductDetailMapper.getProductList(offset,limit,product);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("total",total);
+        map.put("rows",productList);
         return map;
 
     }

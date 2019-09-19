@@ -164,8 +164,42 @@
 
     </resultMap>
 
+    <select id="getProductList"   resultType="com.acghome.entity.db1.Product">
+        select
+                product_id productId,
+                product_core productCore,
+                product_name productName,
+                bar_code barCode,
+                brand_name brandName,
+                one_category_id oneCategoryId,
+                two_category_id twoCategoryId,
+                three_category_id threeCategoryId,
+                price,
+                original_price originalPrice,
+                status,
+                production_date productionDate,
+                shelf_life shelfLife,
+                descript,
+                indate,
+                modified_time modifiedTime
+        from product
+        <include refid="whereSql2"></include>
+        limit #{offset},#{limit}
+    </select>
 
+    <select id="loadCountByQuery" resultType="int">
+        select count(*)
+        from product
+        <include refid="whereSql2"/>
+    </select>
 
+    <sql id="whereSql2">
+        <where>
+            <if test="query.productName!=null and query.productName!=''">
+                and product_name like concat('%',#{query.productName},'%')
+            </if>
+        </where>
+    </sql>
 
 
 
