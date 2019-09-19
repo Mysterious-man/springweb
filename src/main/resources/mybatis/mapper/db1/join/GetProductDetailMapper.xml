@@ -121,13 +121,7 @@
                   limit #{offset},#{limit}
     ) temp on temp.product_id=p.product_id
   </select>
-    <sql id="whereSql">
-        <where>
-            <if test="query_productName!=null and query_productName !='' ">
-                and product_name=#{query_productName}
-            </if>
-        </where>
-    </sql>
+
     <resultMap id="ProductAndSkuDO" type="com.acghome.pojo.DO.ProductAndSkuDO" >
         <id column="product_id" />
         <association property="product" javaType="com.acghome.entity.db1.Product">
@@ -161,8 +155,22 @@
             <result column="sale" property="sale" jdbcType="INTEGER" />
             <result column="lock_stock" property="lockStock" jdbcType="INTEGER" />
         </collection>
-
     </resultMap>
+
+<sql id="whereSql">
+    <where>
+        <if test="query_productName!=null and query_productName !='' ">
+            and product_name=#{query_productName}
+        </if>
+    </where>
+</sql>
+<select id="loadCountByselectProductAndSku" resultType="int" parameterType="java.util.Map">
+    select count(*)
+    from product
+    <include refid="whereSql"/>
+</select>
+
+
 
     <select id="getProductList"   resultType="com.acghome.entity.db1.Product">
         select

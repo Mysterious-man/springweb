@@ -23,6 +23,9 @@ public interface GetProductDetailMapper {
     //查询product表和sku表的分页，有排序
     List<ProductAndSkuDO> selectProductAndSku(Map map);
 
+    int loadCountByselectProductAndSku(Map query);
+
+
     List<Product> getProductList(@Param("offset")int offset, @Param("limit")int limit,@Param("query")Product query);
 
     int loadCountByQuery(@Param("query")Product query);

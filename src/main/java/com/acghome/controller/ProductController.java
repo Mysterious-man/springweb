@@ -168,8 +168,10 @@ public class ProductController {
     @RequestMapping(value = "/manage_list",method = RequestMethod.GET )
     public Map GetManageList(@Param("offset") int offset,@Param("limit") int limit,@Param("query") Map<String,Object> query) {
 
+        HashMap<String, Object> query_map = new HashMap<>();
+        query_map.put("query_productName",query.get("productName"));
 
-        int total=productMapper.countByExample(new ProductExample());
+        int total=getProductDetailMapper.loadCountByselectProductAndSku(query_map);
 
         List<ProductAndSkuDTO> productAndSkulist = productService.getProductAndSkulist(offset,limit,query);
 
