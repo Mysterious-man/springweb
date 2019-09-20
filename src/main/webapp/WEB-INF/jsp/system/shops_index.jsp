@@ -273,24 +273,25 @@
             id:34,
             pid:2,
             icon:'fa fa-angle-double-right',
-            url:'/product/add_product',
-            name:'添加商品',
+            url:'/product/product_manage',
+            name:'商品管理',
 
         },
         {
             id:35,
             pid:2,
             icon:'fa fa-angle-double-right',
-            url:'/product/product_manage',
-            name:'商品管理',
+            url:'/product/Mall_Manage',
+            name:'商城管理',
 
         },
+
         {
             id:56,
             pid:2,
             icon:'fa fa-angle-double-right',
-            url:'/product/Products',
-            name:'分类管理',
+            url:'/product/Special_Manage',
+            name:'专场管理',
 
         },
         {

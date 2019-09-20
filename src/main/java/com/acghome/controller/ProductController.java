@@ -68,11 +68,11 @@ public class ProductController {
     }
 
 
-    //分类管理页
-    @RequestMapping("/Products")
-    public String products(Model model) {
+    //商城管理
+    @RequestMapping("/Mall_Manage")
+    public String mallManage(Model model) {
         model.addAttribute("user",UserContext.getUser());
-        return "system/Products";
+        return "system/Mall_Manage";
     }
 
     //商品管理
@@ -82,7 +82,12 @@ public class ProductController {
         return "system/Product_Manage";
     }
 
-
+    //专场管理
+    @RequestMapping("/Special_Manage")
+    public String specialManage(Model model) {
+        model.addAttribute("user",UserContext.getUser());
+        return "system/Special_Manage";
+    }
 
     @ResponseBody
     @RequestMapping(value = "/add",method = RequestMethod.POST )

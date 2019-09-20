@@ -40,7 +40,7 @@
 <div class="margin" id="page_style">
     <div class="operation clearfix mb15 same_module">
         <ul class="choice_search">
-            <li class="clearfix col-xs-2 col-lg-3 col-ms-3 "><label class="label_name "  style="max-width: 20%">商品名称：</label>
+            <li class="clearfix col-xs-2 col-lg-3 col-ms-3 "><label class="label_name "  style="max-width: 20%">商城名称：</label>
                 <input style="width: 70%;" placeholder="输入商品名称" id="productName" type="text" class="form-control col-xs-8 col-lg-8 col-ms-8">
             </li>
 <%--
@@ -58,9 +58,8 @@
         <div class="list_Exhibition list_show padding15">
             <div class="operation clearfix mb15  same_module">
        <span class="l_f">
-        <a href="/product/add_product"  title="添加品牌" class="btn button_btn bg-deep-blue"><i class="fa fa-plus"></i>添加商品</a>
-         <a href="javascript:ovid()" class="btn button_btn btn-Dark-success"><i class="fa fa-plus"></i>批量创建商城</a>
-        <a href="javascript:ovid()" class="btn  button_btn btn-danger"><i class="fa fa-trash"></i>批量删除</a>
+        <a href="/product/add_product"   class="btn button_btn bg-deep-blue"><i class="fa fa-plus"></i>批量配置专场</a>
+         <a href="javascript:ovid()" class="btn  button_btn btn-danger"><i class="fa fa-trash"></i>批量删除</a>
        </span>
             </div>
             <div class=" datalist_show">
@@ -161,8 +160,7 @@
 
         function operateFormatter(value, row, index) {
                 return [
-                    '<button type="button" class="detail btn btn-primary btn-sm">创建商城</button>&nbsp;&nbsp;',
-                    '<button type="button" class="detail btn btn-primary btn-sm">修改</button>&nbsp;&nbsp;',
+                    '<button type="button" class="detail btn btn-primary btn-sm"><i class="fa fa-cogs"></i>配置专场</button>&nbsp;&nbsp;',
                     '<button type="button" class="del btn btn-primary  btn-sm" >删除</button>'
                 ].join('');
 
