@@ -68,7 +68,7 @@ public class ApiControllerAdvice {
     @ExceptionHandler(value = RequestException.class)
     public Result requestErrorHandler(RequestException ex) {
 
-        String msg= String.format("接口报错，请求参数异常:%s ", ex.getMsg());
+        String msg= String.format("请求参数异常:%s ", ex.getMsg());
 
         logger.error(msg,ex);
 
