@@ -49,11 +49,20 @@ spring:
     port: 5672
 
 
+#开启mapper层的debug级日志
+logging:
+  level:
+    com:
+      acghome:
+        mapper: DEBUG
+
 
 
 
 mybatis:
   mapper-locations: classpath*:/mybatis/mapper/**/*.xml
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 
 
