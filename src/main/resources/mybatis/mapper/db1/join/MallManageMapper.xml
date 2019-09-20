@@ -25,8 +25,7 @@
     SELECT
     m.mall_id,m.product_id as m_product_id,m.store_id,m.product_name as m_product_name,
     m.publish_status,m.audit_status,m.create_time as m_create_time,m.modified_time as m_modified_time,
-    p.product_id as p_product_id ,p.product_name as p_product_name,p.brand_name,p.one_category_id,
-    p.price,p.original_price
+    p.product_id ,p.product_name ,p.brand_name,p.one_category_id,p.product_core,p.price,p.original_price
     FROM mall as m
     LEFT JOIN product as p on m.product_id=p.product_id
     <include refid="ManageListQuery"/>
@@ -49,7 +48,7 @@
 
   <association property="product" javaType="com.acghome.entity.db1.Product">
     <id column="product_id" property="productId" jdbcType="INTEGER" />
-    <!--<result column="product_core" property="productCore" jdbcType="CHAR" />-->
+    <result column="product_core" property="productCore" jdbcType="CHAR" />
     <result column="product_name" property="productName" jdbcType="VARCHAR" />
     <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
     <result column="one_category_id" property="oneCategoryId" jdbcType="INTEGER" />
