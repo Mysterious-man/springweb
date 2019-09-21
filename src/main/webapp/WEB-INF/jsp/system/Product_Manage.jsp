@@ -73,6 +73,39 @@
     </div>
 </div>
 </body>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">添加专场</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-body" >
+                        <div class="form-group col-xs-6">
+                            <label>专场名称</label>
+                            <input type="text" class="form-control"  placeholder="请输入">
+                            <label style="margin-top: 5%">专场开始时间</label>
+                            <input type="text" class="form-control"  placeholder="请输入">
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>专场类型</label>
+                            <input type="text" class="form-control"  placeholder="请输入">
+                            <label style="margin-top: 5%">专场过期时间</label>
+                            <input type="text" class="form-control"  placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="submit" type="button" class="btn btn-primary">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 </html>
 
 <script type="text/javascript">
@@ -161,7 +194,7 @@
 
         function operateFormatter(value, row, index) {
                 return [
-                    '<button type="button" class="detail btn btn-primary btn-sm">创建商城</button>&nbsp;&nbsp;',
+                    '<button type="button" class="detail btn btn-primary btn-sm" data-target="#myModal">创建商城</button>&nbsp;&nbsp;',
                     '<button type="button" class="detail btn btn-primary btn-sm">修改</button>&nbsp;&nbsp;',
                     '<button type="button" class="del btn btn-primary  btn-sm" >删除</button>'
                 ].join('');

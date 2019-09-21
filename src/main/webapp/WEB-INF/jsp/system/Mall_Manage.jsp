@@ -33,7 +33,7 @@
     <script src="${pageContext.request.contextPath}/resources/system/js/respond.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/system/js/css3-mediaqueries.js"  type="text/javascript"></script>
     <![endif]-->
-    <title>品牌管理</title>
+    <title>商城管理</title>
 </head>
 
 <body>
@@ -77,7 +77,7 @@
 <script type="text/javascript">
     function tbInit() {
         $('#tb_content').bootstrapTable({
-            url: '/product/getDataList',         //请求后台的URL（*）
+            url: '/mall/manage_list',         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -115,6 +115,13 @@
                     return index+1;
                 }
             },
+
+            {
+                field: 'mallId',
+                width:200,
+                align: 'center',
+                title: '商城id'
+            },
             {
                 field: 'productId',
                 width:200,
@@ -143,11 +150,18 @@
                 title: '商品市场原价'
             },
             {
-                field: 'status',
+                field: 'publishStatus',
                 width:400,
                 align: 'center',
-                title: '产品状态'
+                title: '商品上架状态'
             },
+            {
+                field: 'auditStatus',
+                width:400,
+                align: 'center',
+                title: '商品审核状态'
+            }
+            ,
                 {
                 field: 'operate',
                 title: '操作',

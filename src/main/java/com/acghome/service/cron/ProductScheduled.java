@@ -87,7 +87,7 @@ public class ProductScheduled {
 
 //
 //    //间隔执行
-//    //表示 每隔 5000 毫秒执行一次
+//    //表示 每隔 15000 毫秒执行一次
 //    @Scheduled(fixedRate = 15000)
 //    public void reportCurrentTime() {
 //
