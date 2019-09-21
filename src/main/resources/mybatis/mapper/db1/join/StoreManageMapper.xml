@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.acghome.mapper.db1.join.StoreManageMapper" >
+  <select id="getDataList"   resultType="com.acghome.entity.db1.Store">
+    select
+        store_id storeId,
+        store_name storeName,
+        store_start_time storeStartTime,
+        store_end_time storeEndTime,
+        store_type storeType,
+        modified_time modifiedTime
+    from store
+    <include refid="whereSql"></include>
+    limit #{offset},#{limit}
+  </select>
+
+  <select id="loadCountByQuery" resultType="int">
+    select count(*)
+    from store
+    <include refid="whereSql"/>
+  </select>
+
+  <sql id="whereSql">
+    <where>
+      <if test="query.storeName!=null and query.storeName!=''">
+        and store_name like concat('%',#{query.storeName},'%')
+      </if>
+    </where>
+  </sql>
+
+
+</mapper>

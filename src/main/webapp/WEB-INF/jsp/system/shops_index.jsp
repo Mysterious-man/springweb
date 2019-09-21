@@ -290,7 +290,7 @@
             id:56,
             pid:2,
             icon:'fa fa-angle-double-right',
-            url:'/product/Special_Manage',
+            url:'/store/Store_Manage',
             name:'专场管理',
 
         },

@@ -58,7 +58,7 @@
         <div class="list_Exhibition list_show padding15">
             <div class="operation clearfix mb15  same_module">
        <span class="l_f">
-        <a data-toggle="modal" data-target="#myModal" title="添加专场" class="btn button_btn bg-deep-blue"><i class="fa fa-plus"></i>添加专场</a>
+        <a  onclick="showDetail()" title="添加专场" class="btn button_btn bg-deep-blue"><i class="fa fa-plus"></i>添加专场</a>
         <a href="javascript:ovid()" class="btn  button_btn btn-danger"><i class="fa fa-trash"></i>批量删除</a>
        </span>
             </div>
@@ -74,48 +74,47 @@
 </body>
 <%--<button class="btn btn-primary btn-lg" >开始演示模态框</button>--%>
 <!-- 模态框（Modal） -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<form id="formData">
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">创建专场</h4>
+                <h4 class="modal-title" id="myModalLabel">添加专场</h4>
             </div>
             <div class="modal-body">
                 <div class="panel panel-default">
-                    <div class="panel-body" >
-                        <div class="form-group col-xs-4">
-                            <label>销售属性1</label>
-                            <input type="text" class="form-control"  placeholder="请输入">
-                            <label>销售属性2</label>
-                            <input type="text" class="form-control"  placeholder="请输入">
-                            <label>销售属性3</label>
-                            <input type="text" class="form-control"  placeholder="请输入">
+                        <div class="panel-body" >
+                            <input type="hidden" id="storeId" name="storeId">
+                            <div class="form-group col-xs-6">
+                                <label>专场名称</label>
+                                <input id="storeName" type="text" class="form-control" name="storeName"  placeholder="请输入">
+                                <label style="margin-top: 5%">专场开始时间</label>
+                                <input id="storeStartTime" type="text" class="form-control" name="storeStartTime"  placeholder="请输入">
+                            </div>
+                            <div class="form-group col-xs-6">
+                                <label>专场类型</label>
+                                <input id="storeType" type="text" class="form-control" name="storeType"  placeholder="请输入">
+                                <label style="margin-top: 5%">专场结束时间</label>
+                                <input id="storeEndTime" type="text" class="form-control" name="storeEndTime"  placeholder="请输入">
+                            </div>
                         </div>
-                        <div class="form-group col-xs-4">
-                            <label>价格</label>
-                            <input type="text" class="form-control"  placeholder="请输入">
-                            <label>sku编码</label>
-                            <input type="text" class="form-control"  placeholder="请输入">
-                            <label>预警库存</label>
-                            <input type="text" class="form-control"  placeholder="请输入">
-                        </div>
-                    </div>
                 </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">提交更改</button>
+                <button id="submit" type="button" class="btn btn-primary">提交</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+</form>
 </html>
 <script type="text/javascript">
+    var basePath="/store";
     function tbInit() {
         $('#tb_content').bootstrapTable({
-            url: '/product/getDataList',         //请求后台的URL（*）
+            url: basePath+'/getDataList',         //请求后台的URL（*）
             method: 'get',                      //请求方式（*）
             toolbar: '#toolbar',                //工具按钮用哪个容器
             striped: true,                      //是否显示行间隔色
@@ -127,7 +126,6 @@
                 var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
                     limit: params.limit,   //页面大小
                     offset: params.offset, //页码
-                    productName:$("#productName").val()
                 };
                 return temp;
             },
@@ -152,68 +150,116 @@
                 formatter: function (value, row, index) {
                     return index+1;
                 }
-            },
-            {
-                field: 'productId',
-                width:200,
-                align: 'center',
-                title: '产品id'
             },{
-                field: 'productName',
+                field: 'storeName',
                 width:200,
                 align: 'center',
-                title: '产品名称'
+                title: '专场名称'
             }, {
-                field: 'brandName',
+                field: 'storeType',
                 width:100,
                 align: 'center',
-                title: '品牌名称'
+                title: '专场类型'
             },
             {
-                field: 'price',
+                field: 'storeStartTime',
                 width:400,
                 align: 'center',
-                title: '商品销售价格'
+                title: '开始时间'
             },{
-                field: 'originalPrice',
+                field: 'storeEndTime',
                 width:400,
                 align: 'center',
-                title: '商品市场原价'
-            },
-            {
-                field: 'status',
-                width:400,
-                align: 'center',
-                title: '产品状态'
+                title: '结束时间'
             },
                 {
                 field: 'operate',
                 title: '操作',
                 align: 'center',
                 width : 220,
-                // events: operateEvents,
+                events: operateEvents,
                 formatter: operateFormatter
             }]
         });
 
-        function operateFormatter(value, row, index) {
-                return [
-                    '<button type="button" class="detail btn btn-primary btn-sm">修改</button>&nbsp;&nbsp;',
-                    '<button type="button" class="del btn btn-primary  btn-sm" >删除</button>'
-                ].join('');
-
+    }
+    window.operateEvents = {
+        'click .detail': function (e, value, row, index) {
+            showDetail(row)},
+        'click .del': function (e, value, row, index) {
+            var isNo=confirm("你确认删除吗？");
+            if(isNo){
+                goDel(row.id);
+            }
         }
-
+    };
+    function operateFormatter(value,row,index) {
+        return [
+            '<button type="button" class="detail btn btn-primary btn-sm">修改</button>&nbsp;&nbsp;',
+            '<button type="button" class="del btn btn-primary  btn-sm" >删除</button>'
+        ].join('');
 
     }
 
+    //添加或修改的站是
+    function showDetail(row){
+        if(row){
+            $("#storeId").val(row.storeId);
+            $("#storeName").val(row.storeName);
+            $("#storeStartTime").val(row.storeStartTime);
+            $("#storeEndTime").val(row.storeEndTime);
+            $("#storeType").val(row.storeType);
+            $("#myModal").modal('show');
+        }else {
+            $("#myModal input").each(function () {
+                $(this).val("");
+            });
+            $("#myModal").modal('show');
+        }
+
+    }
+
+    //删除
+    function goDel(id) {
+        $.ajax({
+            type: "post",
+            url: basePath + "/del",
+            dataType: "json",
+            data: {id: id},
+            success: function (data) {
+                layer.alert(data.message, {
+                    title: '提示框',
+                    icon: 1,
+                });
+
+            },
+        });
+    }
+    $("#submit").on('click',function () {
+        $.ajax({
+            type:"post",
+            url:basePath+"/saveOrUpdate",
+            dataType:"json",
+            data:$("#formData").serialize(),
+            success:function(data){
+                layer.alert(data.message, {
+                    title: '提示框',
+                    icon: 1,
+                });
+                if (data.success){
+                    $('#identifier').modal('hide');
+                }
+
+            },
+        });
+
+    });
     $(function () {
         tbInit();
         $('#identifier').modal('show');
         $('#queryList').on('click', function(){
-            debugger;
             $("#tb_content").bootstrapTable('destroy');
             tbInit();
-        })
+        });
     })
 </script>

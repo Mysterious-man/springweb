@@ -82,12 +82,7 @@ public class ProductController {
         return "system/Product_Manage";
     }
 
-    //专场管理
-    @RequestMapping("/Special_Manage")
-    public String specialManage(Model model) {
-        model.addAttribute("user",UserContext.getUser());
-        return "system/Special_Manage";
-    }
+
 
     @ResponseBody
     @RequestMapping(value = "/add",method = RequestMethod.POST )

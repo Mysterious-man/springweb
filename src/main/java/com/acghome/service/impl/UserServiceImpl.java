@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-public class UserServiceImpl extends BaseServiceImpl<User> implements IUserService {
+public class UserServiceImpl implements IUserService {
 
 
     @Autowired
