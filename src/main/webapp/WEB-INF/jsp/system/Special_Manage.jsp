@@ -40,7 +40,7 @@
 <div class="margin" id="page_style">
     <div class="operation clearfix mb15 same_module">
         <ul class="choice_search">
-            <li class="clearfix col-xs-2 col-lg-3 col-ms-3 "><label class="label_name "  style="max-width: 20%">商品名称：</label>
+            <li class="clearfix col-xs-2 col-lg-3 col-ms-3 "><label class="label_name "  style="max-width: 20%">专场名称：</label>
                 <input style="width: 70%;" placeholder="输入商品名称" id="productName" type="text" class="form-control col-xs-8 col-lg-8 col-ms-8">
             </li>
 <%--
@@ -58,8 +58,7 @@
         <div class="list_Exhibition list_show padding15">
             <div class="operation clearfix mb15  same_module">
        <span class="l_f">
-        <a href="/product/add_product"  title="添加品牌" class="btn button_btn bg-deep-blue"><i class="fa fa-plus"></i>添加商品</a>
-         <a href="javascript:ovid()" class="btn button_btn btn-Dark-success"><i class="fa fa-plus"></i>批量创建商城</a>
+        <a data-toggle="modal" data-target="#myModal" title="添加专场" class="btn button_btn bg-deep-blue"><i class="fa fa-plus"></i>添加专场</a>
         <a href="javascript:ovid()" class="btn  button_btn btn-danger"><i class="fa fa-trash"></i>批量删除</a>
        </span>
             </div>
@@ -73,8 +72,46 @@
     </div>
 </div>
 </body>
-</html>
+<%--<button class="btn btn-primary btn-lg" >开始演示模态框</button>--%>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">创建专场</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-body" >
+                        <div class="form-group col-xs-4">
+                            <label>销售属性1</label>
+                            <input type="text" class="form-control"  placeholder="请输入">
+                            <label>销售属性2</label>
+                            <input type="text" class="form-control"  placeholder="请输入">
+                            <label>销售属性3</label>
+                            <input type="text" class="form-control"  placeholder="请输入">
+                        </div>
+                        <div class="form-group col-xs-4">
+                            <label>价格</label>
+                            <input type="text" class="form-control"  placeholder="请输入">
+                            <label>sku编码</label>
+                            <input type="text" class="form-control"  placeholder="请输入">
+                            <label>预警库存</label>
+                            <input type="text" class="form-control"  placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</html>
 <script type="text/javascript">
     function tbInit() {
         $('#tb_content').bootstrapTable({
@@ -161,7 +198,6 @@
 
         function operateFormatter(value, row, index) {
                 return [
-                    '<button type="button" class="detail btn btn-primary btn-sm">创建商城</button>&nbsp;&nbsp;',
                     '<button type="button" class="detail btn btn-primary btn-sm">修改</button>&nbsp;&nbsp;',
                     '<button type="button" class="del btn btn-primary  btn-sm" >删除</button>'
                 ].join('');
@@ -173,6 +209,7 @@
 
     $(function () {
         tbInit();
+        $('#identifier').modal('show');
         $('#queryList').on('click', function(){
             debugger;
             $("#tb_content").bootstrapTable('destroy');
