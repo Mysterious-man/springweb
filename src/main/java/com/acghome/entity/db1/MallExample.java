@@ -1,5 +1,6 @@
 package com.acghome.entity.db1;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -472,6 +473,186 @@ public class MallExample {
 
         public Criteria andAuditStatusNotBetween(Integer value1, Integer value2) {
             addCriterion("audit_status not between", value1, value2, "auditStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginalPriceIsNull() {
+            addCriterion("original_price is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginalPriceIsNotNull() {
+            addCriterion("original_price is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginalPriceEqualTo(BigDecimal value) {
+            addCriterion("original_price =", value, "originalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginalPriceNotEqualTo(BigDecimal value) {
+            addCriterion("original_price <>", value, "originalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginalPriceGreaterThan(BigDecimal value) {
+            addCriterion("original_price >", value, "originalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginalPriceGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("original_price >=", value, "originalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginalPriceLessThan(BigDecimal value) {
+            addCriterion("original_price <", value, "originalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginalPriceLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("original_price <=", value, "originalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginalPriceIn(List<BigDecimal> values) {
+            addCriterion("original_price in", values, "originalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginalPriceNotIn(List<BigDecimal> values) {
+            addCriterion("original_price not in", values, "originalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginalPriceBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("original_price between", value1, value2, "originalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andOriginalPriceNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("original_price not between", value1, value2, "originalPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNull() {
+            addCriterion("type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNotNull() {
+            addCriterion("type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeEqualTo(Integer value) {
+            addCriterion("type =", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotEqualTo(Integer value) {
+            addCriterion("type <>", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThan(Integer value) {
+            addCriterion("type >", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("type >=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThan(Integer value) {
+            addCriterion("type <", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("type <=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIn(List<Integer> values) {
+            addCriterion("type in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotIn(List<Integer> values) {
+            addCriterion("type not in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeBetween(Integer value1, Integer value2) {
+            addCriterion("type between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("type not between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpireTimeIsNull() {
+            addCriterion("expire_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpireTimeIsNotNull() {
+            addCriterion("expire_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpireTimeEqualTo(Date value) {
+            addCriterion("expire_time =", value, "expireTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpireTimeNotEqualTo(Date value) {
+            addCriterion("expire_time <>", value, "expireTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpireTimeGreaterThan(Date value) {
+            addCriterion("expire_time >", value, "expireTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpireTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("expire_time >=", value, "expireTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpireTimeLessThan(Date value) {
+            addCriterion("expire_time <", value, "expireTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpireTimeLessThanOrEqualTo(Date value) {
+            addCriterion("expire_time <=", value, "expireTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpireTimeIn(List<Date> values) {
+            addCriterion("expire_time in", values, "expireTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpireTimeNotIn(List<Date> values) {
+            addCriterion("expire_time not in", values, "expireTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpireTimeBetween(Date value1, Date value2) {
+            addCriterion("expire_time between", value1, value2, "expireTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpireTimeNotBetween(Date value1, Date value2) {
+            addCriterion("expire_time not between", value1, value2, "expireTime");
             return (Criteria) this;
         }
 

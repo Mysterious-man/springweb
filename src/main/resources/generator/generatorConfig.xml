@@ -62,11 +62,11 @@
         <!--<table tableName="sku_attribute" domainObjectName="Sku_attribute"  enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true"  >-->
             <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
         <!--</table>-->
-        <!--<table tableName="mall" domainObjectName="Mall"  enableUpdateByExample="true"  enableSelectByExample="true"  >-->
-        <!--<generatedKey column="mall_id" sqlStatement="JDBC"/>-->
-        <!--</table>-->
-        <table tableName="store" domainObjectName="Store"  enableUpdateByExample="true"  enableSelectByExample="true"  >
-            <generatedKey column="store_id" sqlStatement="JDBC"/>
+        <table tableName="mall" domainObjectName="Mall"  enableUpdateByExample="true"  enableSelectByExample="true"  >
+        <generatedKey column="mall_id" sqlStatement="JDBC"/>
         </table>
+        <!--<table tableName="store" domainObjectName="Store"  enableUpdateByExample="true"  enableSelectByExample="true"  >-->
+            <!--<generatedKey column="store_id" sqlStatement="JDBC"/>-->
+        <!--</table>-->
     </context>
 </generatorConfiguration>

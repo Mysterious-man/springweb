@@ -70,10 +70,13 @@ public class MallServiceimpl implements IMallService {
         Mall mall = new Mall();
         mall.setProductId(mallAddDTO.getProduct_id());
         mall.setProductName(mallAddDTO.getProduct_name());
+        mall.setAuditStatus(mallAddDTO.getAudit_status());
+        mall.setPublishStatus(mallAddDTO.getPublish_status());
+        mall.setOriginalPrice(mallAddDTO.getOriginal_price());
+        mall.setType(mallAddDTO.getType());
+        mall.setExpireTime(mallAddDTO.getExpire_time());
 
-        //暂时默认商品是已审核，且上架状态
-        mall.setAuditStatus(1);
-        mall.setPublishStatus(1);
+
 
         mallMapper.insertSelective(mall);
 

@@ -1,6 +1,7 @@
 package com.acghome.entity.db1;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Mall implements Serializable {
@@ -15,6 +16,12 @@ public class Mall implements Serializable {
     private Integer publishStatus;
 
     private Integer auditStatus;
+
+    private BigDecimal originalPrice;
+
+    private Integer type;
+
+    private Date expireTime;
 
     private Date createTime;
 
@@ -68,6 +75,30 @@ public class Mall implements Serializable {
 
     public void setAuditStatus(Integer auditStatus) {
         this.auditStatus = auditStatus;
+    }
+
+    public BigDecimal getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(BigDecimal originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Date getExpireTime() {
+        return expireTime;
+    }
+
+    public void setExpireTime(Date expireTime) {
+        this.expireTime = expireTime;
     }
 
     public Date getCreateTime() {

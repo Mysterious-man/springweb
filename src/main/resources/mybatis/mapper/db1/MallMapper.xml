@@ -8,6 +8,9 @@
     <result column="product_name" property="productName" jdbcType="VARCHAR" />
     <result column="publish_status" property="publishStatus" jdbcType="INTEGER" />
     <result column="audit_status" property="auditStatus" jdbcType="INTEGER" />
+    <result column="original_price" property="originalPrice" jdbcType="DECIMAL" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="expire_time" property="expireTime" jdbcType="TIMESTAMP" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -70,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    mall_id, product_id, store_id, product_name, publish_status, audit_status, create_time, 
-    modified_time
+    mall_id, product_id, store_id, product_name, publish_status, audit_status, original_price, 
+    type, expire_time, create_time, modified_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.acghome.entity.db1.MallExample" >
     select
@@ -105,10 +108,12 @@
   </delete>
   <insert id="insert" parameterType="com.acghome.entity.db1.Mall" useGeneratedKeys="true" keyProperty="mallId" >
     insert into mall (product_id, store_id, product_name, 
-      publish_status, audit_status, create_time, 
+      publish_status, audit_status, original_price, 
+      type, expire_time, create_time, 
       modified_time)
     values (#{productId,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, 
-      #{publishStatus,jdbcType=INTEGER}, #{auditStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{publishStatus,jdbcType=INTEGER}, #{auditStatus,jdbcType=INTEGER}, #{originalPrice,jdbcType=DECIMAL}, 
+      #{type,jdbcType=INTEGER}, #{expireTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
       #{modifiedTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.acghome.entity.db1.Mall" useGeneratedKeys="true" keyProperty="mallId" >
@@ -128,6 +133,15 @@
       </if>
       <if test="auditStatus != null" >
         audit_status,
+      </if>
+      <if test="originalPrice != null" >
+        original_price,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="expireTime != null" >
+        expire_time,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -151,6 +165,15 @@
       </if>
       <if test="auditStatus != null" >
         #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="originalPrice != null" >
+        #{originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null" >
+        #{expireTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -187,6 +210,15 @@
       <if test="record.auditStatus != null" >
         audit_status = #{record.auditStatus,jdbcType=INTEGER},
       </if>
+      <if test="record.originalPrice != null" >
+        original_price = #{record.originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.expireTime != null" >
+        expire_time = #{record.expireTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
@@ -206,6 +238,9 @@
       product_name = #{record.productName,jdbcType=VARCHAR},
       publish_status = #{record.publishStatus,jdbcType=INTEGER},
       audit_status = #{record.auditStatus,jdbcType=INTEGER},
+      original_price = #{record.originalPrice,jdbcType=DECIMAL},
+      type = #{record.type,jdbcType=INTEGER},
+      expire_time = #{record.expireTime,jdbcType=TIMESTAMP},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       modified_time = #{record.modifiedTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
@@ -230,6 +265,15 @@
       <if test="auditStatus != null" >
         audit_status = #{auditStatus,jdbcType=INTEGER},
       </if>
+      <if test="originalPrice != null" >
+        original_price = #{originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null" >
+        expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -246,6 +290,9 @@
       product_name = #{productName,jdbcType=VARCHAR},
       publish_status = #{publishStatus,jdbcType=INTEGER},
       audit_status = #{auditStatus,jdbcType=INTEGER},
+      original_price = #{originalPrice,jdbcType=DECIMAL},
+      type = #{type,jdbcType=INTEGER},
+      expire_time = #{expireTime,jdbcType=TIMESTAMP},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       modified_time = #{modifiedTime,jdbcType=TIMESTAMP}
     where mall_id = #{mallId,jdbcType=INTEGER}
