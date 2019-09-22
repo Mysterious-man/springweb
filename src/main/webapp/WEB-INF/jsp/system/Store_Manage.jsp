@@ -41,7 +41,7 @@
     <div class="operation clearfix mb15 same_module">
         <ul class="choice_search">
             <li class="clearfix col-xs-2 col-lg-3 col-ms-3 "><label class="label_name "  style="max-width: 20%">专场名称：</label>
-                <input style="width: 70%;" placeholder="输入商品名称" id="productName" type="text" class="form-control col-xs-8 col-lg-8 col-ms-8">
+                <input style="width: 70%;"  data-content-id="nameSelect" placeholder="输入名称" id="productName" type="text" class="form-control col-xs-8 col-lg-8 col-ms-8">
             </li>
 <%--
             <li style="max-width: 20%" class="clearfix col-xs-2 col-lg-3 col-ms-3"><label class="label_name ">添加时间：</label>
@@ -94,7 +94,11 @@
                             </div>
                             <div class="form-group col-xs-6">
                                 <label>专场类型</label>
-                                <input id="storeType" type="text" class="form-control" name="storeType"  placeholder="请输入">
+                                <select id="storeType" name="storeType" style="width: 100%">
+                                    <option value ="1">普通</option>
+                                    <option value ="2">高级</option>
+                                </select>
+<%--                                <input id="storeType" type="text" class="form-control" name="storeType"  placeholder="请输入">--%>
                                 <label style="margin-top: 5%">专场结束时间</label>
                                 <input id="storeEndTime" type="text" class="form-control" name="storeEndTime"  placeholder="请输入">
                             </div>
@@ -126,6 +130,8 @@
                 var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
                     limit: params.limit,   //页面大小
                     offset: params.offset, //页码
+                    offset: params.offset, //页码
+                    storeName:$("#nameSelect").val()
                 };
                 return temp;
             },
@@ -246,8 +252,11 @@
                     title: '提示框',
                     icon: 1,
                 });
+                  debugger;
                 if (data.success){
-                    $('#identifier').modal('hide');
+                    $('#myModal').modal("hide");
+                    $("#tb_content").bootstrapTable('destroy');
+                    tbInit();
                 }
 
             },
@@ -256,7 +265,6 @@
     });
     $(function () {
         tbInit();
-        $('#identifier').modal('show');
         $('#queryList').on('click', function(){
             $("#tb_content").bootstrapTable('destroy');
             tbInit();

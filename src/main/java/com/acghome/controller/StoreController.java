@@ -59,7 +59,7 @@ public class StoreController extends BaseContorller {
     @RequestMapping(value = "/saveOrUpdate")
     public Result saveOrUpdate(Store store) {
         String msg = storeService.saveOrUpdate(store);
-        return ResultGenerator.genFailResult(msg);
+        return ResultGenerator.trueResult(msg);
     }
     //删除
     @ResponseBody

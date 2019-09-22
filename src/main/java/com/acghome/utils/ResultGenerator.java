@@ -47,6 +47,12 @@ public class ResultGenerator {
         return genFailResult(message,data);
     }
 
+    public static Result trueResult(String message) {
+        Result result=new Result();
+        result.setMessage(message);
+        result.setSuccess(Boolean.TRUE);
+        return result;
+    }
     public static Result genFailResult(String message,Object data) {
 
         return  genFailResult(message,data,FAIL_CODE);
